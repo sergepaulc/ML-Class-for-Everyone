@@ -46,6 +46,7 @@ Readings:
 
 Videos:
 
+- [Jeff Dean (Google): Exciting Trends in Machine Learning](https://youtu.be/oSCRZkSQ1CE?si=kJu_JP27vmGlc-SJ)
 - [A machine learning primer](https://www.youtube.com/watch?v=1M09i0f3ruI&t=22s) (watch the sections for the linear regression, logistic regression, and K-means)
 
 Code samples:
