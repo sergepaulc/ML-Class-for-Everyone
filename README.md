@@ -1,2 +1,3 @@
-# ML-Class-for-Everyone
-Machine learning class for everyone
+# ML Class for Everyone
+
+## A Gentle Introduction to Machine Learning for Eeveryone
