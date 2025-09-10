@@ -1,1 +1,83 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import classification_report
+
+# Example dataset (toy example)
+data = {
+    "subject": [
+        "Win a free iPhone",
+        "Meeting agenda for tomorrow",
+        "Limited time offer - act now!",
+        "Family photos attached",
+        "Update your account password"
+    ],
+    "body": [
+        "Click this link to claim your prize",
+        "Let's discuss the Q3 budget",
+        "Hurry! Discounts available only today",
+        "See the vacation pictures attached",
+        "Suspicious login attempt, please verify"
+    ],
+    "sender": [
+        "promo@spam.com",
+        "colleague@company.com",
+        "sales@deals.com",
+        "friend@gmail.com",
+        "security@bank.com"
+    ],
+    "headers": [
+        "Received-SPF: fail",
+        "Received-SPF: pass",
+        "Received-SPF: fail",
+        "Received-SPF: pass",
+        "Received-SPF: neutral"
+    ],
+    "links": [1, 0, 2, 0, 1],  # number of embedded links
+    "attachments": [0, 0, 0, 1, 0],  # number of attachments
+    "label": [1, 0, 1, 0, 1]  # 1 = spam, 0 = not spam
+}
+
+df = pd.DataFrame(data)
+
+# Features and target
+X = df.drop("label", axis=1)
+y = df["label"]
+
+# Define feature groups
+text_features = ["subject", "body"]
+categorical_features = ["sender", "headers"]
+numeric_features = ["links", "attachments"]
+
+# Preprocessing
+preprocessor = ColumnTransformer(
+    transformers=[
+        ("subject", TfidfVectorizer(), "subject"),
+        ("body", TfidfVectorizer(), "body"),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_features),
+        ("num", "passthrough", numeric_features)
+    ]
+)
+
+# Build pipeline: preprocessing + logistic regression
+model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("classifier", LogisticRegression(max_iter=1000))
+])
+
+# Train/test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train model
+model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
+
+# Evaluate
+print(classification_report(y_test, y_pred))
 
