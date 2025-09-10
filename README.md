@@ -38,15 +38,15 @@ Please watch at least one of the following videos to start building your technic
 
 Readings:
 
-[Wikipedia: Linear regression](https://en.wikipedia.org/wiki/Linear_regression)
+- [Wikipedia: Linear regression](https://en.wikipedia.org/wiki/Linear_regression)
 
-[Wikipedia: Logistic regression](https://en.wikipedia.org/wiki/Logistic_regression)
+- [Wikipedia: Logistic regression](https://en.wikipedia.org/wiki/Logistic_regression)
 
-[Wikipedia: K-means clustering](https://en.wikipedia.org/wiki/K-means_clustering)
+- [Wikipedia: K-means clustering](https://en.wikipedia.org/wiki/K-means_clustering)
 
 Videos:
 
-[A machine learning primer](https://www.youtube.com/watch?v=1M09i0f3ruI&t=22s) (watch the sections for the linear regression, logistic regression, and K-means)
+- [A machine learning primer](https://www.youtube.com/watch?v=1M09i0f3ruI&t=22s) (watch the sections for the linear regression, logistic regression, and K-means)
 
 Code sample:
 
