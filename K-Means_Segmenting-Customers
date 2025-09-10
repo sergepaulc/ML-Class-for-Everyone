@@ -1,1 +1,70 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+from sklearn.pipeline import Pipeline
+
+# -----------------------------
+# 1) Example data (synthetic)
+#    Columns match axes:
+#    - brand_loyalty: higher = more loyal
+#    - price_sensitivity: higher = more sensitive to price changes
+# -----------------------------
+rng = np.random.default_rng(42)
+
+# Create a few cluster-ish clouds (just for demo)
+loyal_lowprice   = rng.normal(loc=[80, 20], scale=[8, 6], size=(100, 2))
+loyal_highprice  = rng.normal(loc=[85, 75], scale=[7, 8], size=(90, 2))
+mid_mid          = rng.normal(loc=[50, 50], scale=[10, 10], size=(120, 2))
+low_loyal_highp  = rng.normal(loc=[25, 80], scale=[7, 6], size=(90, 2))
+
+data = np.vstack([loyal_lowprice, loyal_highprice, mid_mid, low_loyal_highp])
+df = pd.DataFrame(data, columns=["brand_loyalty", "price_sensitivity"])
+
+# Optional: clamp to a nice range (0–100)
+df = df.clip(lower=0, upper=100)
+
+# -----------------------------
+# 2) Pipeline: scale + KMeans
+# -----------------------------
+n_clusters = 4  # set to 3–5 per your needs
+pipe = Pipeline([
+    ("scaler", StandardScaler()),
+    ("kmeans", KMeans(n_clusters=n_clusters, random_state=42, n_init=10))
+])
+
+labels = pipe.fit_predict(df)
+
+# Silhouette to sanity-check cluster separation (higher is better, ~[-1,1])
+sil = silhouette_score(df, labels)
+print(f"Silhouette score (n_clusters={n_clusters}): {sil:.3f}")
+
+# -----------------------------
+# 3) Cluster centers (back to original scale for plotting)
+# -----------------------------
+scaler = pipe.named_steps["scaler"]
+kmeans = pipe.named_steps["kmeans"]
+centers_scaled = kmeans.cluster_centers_
+centers = scaler.inverse_transform(centers_scaled)  # original feature scale
+
+# -----------------------------
+# 4) Plot: x = brand loyalty, y = price sensitivity
+# -----------------------------
+plt.figure(figsize=(7, 6))
+plt.scatter(df["brand_loyalty"], df["price_sensitivity"], c=labels, alpha=0.6)
+plt.scatter(centers[:, 0], centers[:, 1], marker="X", s=200)  # cluster centers
+
+plt.xlabel("Brand Loyalty")
+plt.ylabel("Price Sensitivity")
+plt.title(f"K-means Customer Segments (k={n_clusters})")
+plt.grid(True)
+
+# Optional: annotate centers
+for i, (cx, cy) in enumerate(centers):
+    plt.text(cx, cy, f"  C{i}", va="center")
+
+plt.show()
 
