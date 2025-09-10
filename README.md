@@ -17,6 +17,7 @@ https://www.youtube.com/live/o8NiE3XMPrM?si=fQJpPu21VgWc2NQq
 https://www.youtube.com/live/0Uu_VJeVVfo?si=FowXlWTOlF80fX3r
 
 Pre-Class Homework 2: Warm-up on technology
+
 Please watch at least one of the following videos to start building your technical knowledge:
  
 - Arthur Mensch on the Future of GenAI
