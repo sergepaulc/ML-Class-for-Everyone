@@ -7,8 +7,7 @@ Pre-Class Homework 1: The AI/ML landscape
 
 Please watch at least one of the following videos to get a good overview of the AI/ML landscape:
  
-- GTC March 2025 Keynote with NVIDIA CEO Jensen Huang
-https://www.youtube.com/live/_waPvOwL9Z8?si=_Rf0MqJMvVKolRMa
+- [GTC March 2025 Keynote with NVIDIA CEO Jensen Huang](https://www.youtube.com/live/_waPvOwL9Z8?si=_Rf0MqJMvVKolRMa)
  
 - Google I/O '25 Keynote
 https://www.youtube.com/live/o8NiE3XMPrM?si=fQJpPu21VgWc2NQq
