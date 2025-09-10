@@ -34,7 +34,7 @@ Please watch at least one of the following videos to start building your technic
 
 
 ## Class 1
-
+Presentation:
 
 Readings:
 
