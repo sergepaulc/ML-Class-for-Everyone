@@ -36,5 +36,16 @@ Please watch at least one of the following videos to start building your technic
 ## Class 1
 [ML University for PM Class 1](https://siliconvalleyinsider.files.wordpress.com/2023/08/ml_university_for_pm_class_1.pdf)
 
-Videos:
-- Professor A
+Readings:
+
+[Wikipedia: Linear regression](https://en.wikipedia.org/wiki/Linear_regression)
+[Wikipedia: Logistic regression](https://en.wikipedia.org/wiki/Logistic_regression)
+[Wikipedia: K-means clustering](https://en.wikipedia.org/wiki/K-means_clustering)
+
+Code sample:
+
+
+Homework:
+
+Select a few ML applications that you are using every day on your desktop or your mobile phone. Classify them into supervised or unsupervised learning. Try to identify the source of the data. Try to evaluate the experience of the application. 
+Propose a few applications that could be developed using an estimation (based on a regression), a classification (based on a logistic regression), and a segmentation (based on a K-means clustering).
