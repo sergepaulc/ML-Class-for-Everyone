@@ -51,6 +51,7 @@ Videos:
 Code samples:
 - [Linear_Regression_Predicting_House_Prices](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Linear_Regression_Predicting_House_Prices)
 - [Logistic_Regression_Classifying_Spam_Non_Spam_Emails](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Logistic_Regression_Classifying_Spam_Non_Spam_Emails)
+- [K_Means_Segmenting_Customers](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/K_Means_Segmenting_Customers)
 
 Homework:
 
