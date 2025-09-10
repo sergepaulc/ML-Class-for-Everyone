@@ -50,9 +50,10 @@ Videos:
 
 Code samples:
 - [Linear_Regression_Predicting_House_Prices](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Linear_Regression_Predicting_House_Prices)
-
+- [Logistic_Regression_Classifying_Spam_Non_Spam_Emails](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Logistic_Regression_Classifying_Spam_Non_Spam_Emails)
 
 Homework:
 
-Select a few ML applications that you are using every day on your desktop or your mobile phone. Classify them into supervised or unsupervised learning. Try to identify the source of the data. Try to evaluate the experience of the application. 
-Propose a few applications that could be developed using an estimation (based on a regression), a classification (based on a logistic regression), and a segmentation (based on a K-means clustering).
+- Select a few ML applications that you are using every day on your desktop or your mobile phone. Classify them into supervised or unsupervised learning. Try to identify the source of the data. Try to evaluate the experience of the application.
+  
+- Propose a few applications that could be developed using an estimation (based on a regression), a classification (based on a logistic regression), and a segmentation (based on a K-means clustering).
