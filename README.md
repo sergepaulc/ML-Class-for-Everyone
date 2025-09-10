@@ -54,6 +54,8 @@ Code samples:
 - [Logistic_Regression_Classifying_Spam_Non_Spam_Emails](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Logistic_Regression_Classifying_Spam_Non_Spam_Emails)
 - [K_Means_Segmenting_Customers](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/K_Means_Segmenting_Customers)
 
+- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS)
+
 Homework:
 
 - Select a few ML applications that you are using every day on your desktop or your mobile phone. Classify them into supervised or unsupervised learning. Try to identify the source of the data. Try to evaluate the experience of the application.
