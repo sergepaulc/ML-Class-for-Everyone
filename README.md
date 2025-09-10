@@ -34,7 +34,7 @@ Please watch at least one of the following videos to start building your technic
 
 
 ## Class 1
-[ML University for PM Class 1](https://siliconvalleyinsider.files.wordpress.com/2023/08/ml_university_for_pm_class_1.pdf)
+
 
 Readings:
 
