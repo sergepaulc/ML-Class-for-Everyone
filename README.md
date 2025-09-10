@@ -1,7 +1,7 @@
 # ML Class for Everyone
 
 ## A Gentle Introduction to Machine Learning for Everyone
-The goal of this class is to learn the fundamentals of ML technologies
+The goal of this class is to learn the fundamentals of ML technologies.
 
 There are six classes. Class 7 is a final project where students present a machine learning application.
 
