@@ -58,4 +58,4 @@ Homework:
 
 - Select a few ML applications that you are using every day on your desktop or your mobile phone. Classify them into supervised or unsupervised learning. Try to identify the source of the data. Try to evaluate the experience of the application.
   
-- Propose a few applications that could be developed using an estimation (based on a regression), a classification (based on a logistic regression), and a segmentation (based on a K-means clustering).
+- Propose a few use cases and applications that could be developed using an estimation (based on a regression), a binary classification (based on a logistic regression), and a segmentation (based on a K-means clustering).
