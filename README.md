@@ -60,7 +60,7 @@ Code samples:
   
 - [Logistic regression](https://colab.research.google.com/drive/16w3TDn_tAku17mum98EWTmjaLHAJcsk0?usp=sharing)
   
-  - [K-means](https://colab.research.google.com/drive/1zw_6ZnFPCCh6mWDAd_VBMZB4VkC3ys2q?usp=sharing)
+- [K-means](https://colab.research.google.com/drive/1zw_6ZnFPCCh6mWDAd_VBMZB4VkC3ys2q?usp=sharing)
 
 Homework:
 
