@@ -42,6 +42,10 @@ Readings:
 [Wikipedia: Logistic regression](https://en.wikipedia.org/wiki/Logistic_regression)
 [Wikipedia: K-means clustering](https://en.wikipedia.org/wiki/K-means_clustering)
 
+Videos:
+
+[A machine learning primer](https://www.youtube.com/watch?v=1M09i0f3ruI&t=22s)
+
 Code sample:
 
 
