@@ -28,8 +28,7 @@ Please watch at least one of the following videos to start building your technic
  
 - [Arthur Mensch on the Future of GenAI](https://youtu.be/bzs0wFP_6ck?si=ss9H2V3SQYI3oNCf)
  
-- Humanoid Robots – Professor Pieter Abbeel from UC Berkeley
-AI for Humanoid Robots S73182 | GTC 2025 | NVIDIA On-Demand
+- [Humanoid Robots – Professor Pieter Abbeel from UC Berkeley - AI for Humanoid Robots @ NVIDIA GTC 2025](https://www.nvidia.com/en-us/on-demand/session/gtc25-s73182/)
  
 - [OpenAI Achieved Gold-Medal Standard at the 2025 International Mathematical Olympiad](https://youtu.be/EEIPtofVe2Q?si=igiNENAdzZnvBgJ-)
 
