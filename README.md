@@ -49,7 +49,7 @@ Videos:
 - [A machine learning primer](https://www.youtube.com/watch?v=1M09i0f3ruI&t=22s) (watch the sections for the linear regression, logistic regression, and K-means)
 
 Code samples:
-- Linear_Regression_Predicting_House_Prices
+- [Linear_Regression_Predicting_House_Prices](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Linear_Regression_Predicting_House_Prices)
 
 
 Homework:
