@@ -37,9 +37,13 @@ Please watch at least one of the following videos to start building your technic
 Presentation:
 
 Class overview:
+
 Understanding “fundamentally” what is machine learning?
+
 Reviewing quickly the history of artificial intelligence
+
 Learning to classify apps that are “supervised” and “unsupervised” learning
+
 An introduction of three basic ML algorithms:
 - A regression model
 - A classification model
