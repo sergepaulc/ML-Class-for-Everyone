@@ -83,8 +83,12 @@ Readings:
 
 Videos:
 
-- [Jeff Dean (Google): Exciting Trends in Machine Learning](https://youtu.be/oSCRZkSQ1CE?si=kJu_JP27vmGlc-SJ)
+- Easy:
 - [A machine learning primer](https://www.youtube.com/watch?v=1M09i0f3ruI&t=22s) (watch the sections for the linear regression, logistic regression, and K-means)
+
+- More advanced:
+- [MIT Class - Decision trees and random forest](https://youtu.be/ZOiBe-nrmc4?si=GA11QGq8I21Bbycs)
+- [MIT Class - Support Vector Machine](https://youtu.be/ik7E7r2a1h8?si=j8OHXPbXJXOLSi6S)
 
 Code samples:
 - [Linear_Regression_Predicting_House_Prices](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Linear_Regression_Predicting_House_Prices)
