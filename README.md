@@ -65,3 +65,35 @@ Homework:
 - Select a few ML applications that you are using every day on your desktop or your mobile phone. Classify them into supervised or unsupervised learning. Try to identify the source of the data. Try to evaluate the experience of the application.
   
 - Propose a few use cases and applications that could be developed using an estimation (based on a regression), a binary classification (based on a logistic regression), and a segmentation (based on a K-means clustering).
+
+## Class 2
+Presentation:
+
+Readings:
+
+[Wikipedia: Decision trees learning](https://en.wikipedia.org/wiki/Decision_tree_learning)
+[Wikipedia: Ensemble learning](https://en.wikipedia.org/wiki/Ensemble_learning)
+[Wikipedia: Random forest](https://en.wikipedia.org/wiki/Random_forest)
+
+
+Videos:
+
+- [Jeff Dean (Google): Exciting Trends in Machine Learning](https://youtu.be/oSCRZkSQ1CE?si=kJu_JP27vmGlc-SJ)
+- [A machine learning primer](https://www.youtube.com/watch?v=1M09i0f3ruI&t=22s) (watch the sections for the linear regression, logistic regression, and K-means)
+
+Code samples:
+- [Linear_Regression_Predicting_House_Prices](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Linear_Regression_Predicting_House_Prices)
+- [Logistic_Regression_Classifying_Spam_Non_Spam_Emails](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Logistic_Regression_Classifying_Spam_Non_Spam_Emails)
+- [K_Means_Segmenting_Customers](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/K_Means_Segmenting_Customers)
+
+- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS) - [Linear regression](https://colab.research.google.com/drive/1m3oQ9b0oYOT-DXEy0JCdgWPLGllHMb4V?usp=sharing)
+  
+- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS) - [Logistic regression](https://colab.research.google.com/drive/16w3TDn_tAku17mum98EWTmjaLHAJcsk0?usp=sharing)
+  
+- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS) - [K-means](https://colab.research.google.com/drive/1zw_6ZnFPCCh6mWDAd_VBMZB4VkC3ys2q?usp=sharing)
+
+Homework:
+
+- Select a few ML applications that you are using every day on your desktop or your mobile phone. Classify them into supervised or unsupervised learning. Try to identify the source of the data. Try to evaluate the experience of the application.
+  
+- Propose a few use cases and applications that could be developed using an estimation (based on a regression), a binary classification (based on a logistic regression), and a segmentation (based on a K-means clustering).
