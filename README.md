@@ -77,6 +77,10 @@ Readings:
 
 - [Wikipedia: Random forest](https://en.wikipedia.org/wiki/Random_forest)
 
+- [Wikipedia: Support Vector Machines](https://en.wikipedia.org/wiki/Support_vector_machine)
+
+- [Wikipedia: Kernel Method](https://en.wikipedia.org/wiki/Kernel_method)
+
 Videos:
 
 - [Jeff Dean (Google): Exciting Trends in Machine Learning](https://youtu.be/oSCRZkSQ1CE?si=kJu_JP27vmGlc-SJ)
