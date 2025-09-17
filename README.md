@@ -99,6 +99,8 @@ Code samples:
  
 Homework:
 
-- Select a few ML applications that you are using every day on your desktop or your mobile phone. Classify them into supervised or unsupervised learning. Try to identify the source of the data. Try to evaluate the experience of the application.
-  
-- Propose a few use cases and applications that could be developed using an estimation (based on a regression), a binary classification (based on a logistic regression), and a segmentation (based on a K-means clustering).
+Homework:
+
+- You have been hired to be the first Product Manager, Program Manager, or Designer for a new online store. Your first assignment is to lead the development of an ML application for classifying the products across various categories that will be available on the store. Consider that the store will provide up to 500 products from many suppliers across many types of categories for consumers such as home decoration, cooking, fashion, fitness…To get started on that assignment, please propose a small draft of your proposed plan for that app. Please put your thoughts in the same google document that you use for your previous homework.
+- Since you completed ahead of schedule and with a lower budget your classification app, you are now being asked to develop a segmentation app for the customers that will be visiting and purchasing on the store. That app could leverage the labels of your classification apps. Please put your thoughts in the same google document that you use for your previous homework.
+Note: You can be as creative as you want in terms of the product plan that you will use to drive the development of those apps but at least describe the “what” and “why” of the apps, the data sources/features, the possible models, and any KPIs. If you are running out of time, just do something simple in a few sentences for each homework in ½ page. If you have time, do as much as you can 🙂
