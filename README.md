@@ -38,16 +38,13 @@ Presentation:
 
 Class overview:
 
-Understanding “fundamentally” what is machine learning?
+- Understanding “fundamentally” what is machine learning?
 
-Reviewing quickly the history of artificial intelligence
+- Reviewing quickly the history of artificial intelligence
 
-Learning to classify apps that are “supervised” and “unsupervised” learning
+- Learning to classify apps that are “supervised” and “unsupervised” learning
 
-An introduction of three basic ML algorithms:
-- A regression model
-- A classification model
-- A clustering model
+- An introduction of three basic ML algorithms: A regression model, a classification model, a clustering model
 
 Readings:
 
