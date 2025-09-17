@@ -1,0 +1,37 @@
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+import matplotlib.pyplot as plt
+
+# 1) Load data
+iris = load_iris()
+X, y = iris.data, iris.target
+feature_names = iris.feature_names
+class_names = iris.target_names
+
+# 2) Split train/test
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42, stratify=y
+)
+
+# 3) Train Random Forest
+clf = RandomForestClassifier(
+    n_estimators=100,      # number of trees
+    max_depth=None,        # let trees grow fully
+    random_state=42
+)
+clf.fit(X_train, y_train)
+
+# 4) Evaluate
+y_pred = clf.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
+print("\nClassification Report:\n", classification_report(y_test, y_pred, target_names=class_names))
+
+# 5) Feature Importance Plot
+importances = clf.feature_importances_
+plt.barh(feature_names, importances)
+plt.xlabel("Feature Importance")
+plt.title("Random Forest Feature Importance (Iris)")
+plt.show()
