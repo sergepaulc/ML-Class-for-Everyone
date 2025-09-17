@@ -72,9 +72,10 @@ Presentation:
 Readings:
 
 [Wikipedia: Decision trees learning](https://en.wikipedia.org/wiki/Decision_tree_learning)
-[Wikipedia: Ensemble learning](https://en.wikipedia.org/wiki/Ensemble_learning)
-[Wikipedia: Random forest](https://en.wikipedia.org/wiki/Random_forest)
 
+[Wikipedia: Ensemble learning](https://en.wikipedia.org/wiki/Ensemble_learning)
+
+[Wikipedia: Random forest](https://en.wikipedia.org/wiki/Random_forest)
 
 Videos:
 
