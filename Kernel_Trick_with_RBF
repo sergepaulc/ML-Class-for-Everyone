@@ -1,0 +1,40 @@
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_circles
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+import numpy as np
+
+# 1) Generate nonlinear dataset (two concentric circles)
+X, y = make_circles(n_samples=300, factor=0.5, noise=0.05, random_state=42)
+
+# 2) Train/test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42, stratify=y
+)
+
+# 3) Train SVM with RBF kernel
+clf = SVC(kernel="rbf", C=1.0, gamma=1.0, random_state=42)
+clf.fit(X_train, y_train)
+
+# 4) Evaluate
+y_pred = clf.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+# 5) Visualize decision boundary
+def plot_decision_boundary(clf, X, y):
+    h = 0.02
+    x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
+    y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                         np.arange(y_min, y_max, h))
+    
+    Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    
+    plt.contourf(xx, yy, Z, alpha=0.3, cmap=plt.cm.coolwarm)
+    plt.scatter(X[:, 0], X[:, 1], c=y, s=40, edgecolors='k', cmap=plt.cm.coolwarm)
+    plt.title("SVM with RBF Kernel (Nonlinear Boundary)")
+    plt.show()
+
+plot_decision_boundary(clf, X, y)
