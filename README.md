@@ -91,9 +91,9 @@ Videos:
 - [MIT Class - Support Vector Machine](https://youtu.be/ik7E7r2a1h8?si=j8OHXPbXJXOLSi6S)
 
 Code samples:
-- [Linear_Regression_Predicting_House_Prices](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Linear_Regression_Predicting_House_Prices)
-- [Logistic_Regression_Classifying_Spam_Non_Spam_Emails](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Logistic_Regression_Classifying_Spam_Non_Spam_Emails)
-- [K_Means_Segmenting_Customers](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/K_Means_Segmenting_Customers)
+- [Decision_Trees_Classifying_Iris_Flowers](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Decision_Trees_Classifying_Iris_Flowers)
+- [Random_Forest_Classifying_Iris_Flowers](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Random_Forest_Classifying_Iris_Flowers)
+- [Support_Vector_Machine_Classifying_Two_Datasets](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Support_Vector_Machine_Classifying_Two_Datasets)
 
 - [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS) - [Support Vector Machine](https://colab.research.google.com/drive/16w3TDn_tAku17mum98EWTmjaLHAJcsk0?usp=sharing)
  
