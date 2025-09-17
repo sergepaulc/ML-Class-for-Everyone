@@ -39,8 +39,10 @@ Readings:
 
 Videos:
 
-- Easy:[A machine learning primer](https://www.youtube.com/watch?v=1M09i0f3ruI&t=22s) (watch the sections for the linear regression, logistic regression, and K-means)
-- More advanced: [MIT Class - Regression](https://youtu.be/OpvrwhWEUmY?si=Tb03BKJ6ApMbSdME)
+- Easy:
+- [A machine learning primer](https://www.youtube.com/watch?v=1M09i0f3ruI&t=22s) (watch the sections for the linear regression, logistic regression, and K-means)
+- More advanced:
+- [MIT Class - Regression](https://youtu.be/OpvrwhWEUmY?si=Tb03BKJ6ApMbSdME)
 - [MIT Class - Logistic Regression](https://youtu.be/abB3fwfPy14?si=WS-kXaPO_jZEylUP)
 - [MIT CLass - Clustering](https://youtu.be/BaZWcSq3IuI)
 
