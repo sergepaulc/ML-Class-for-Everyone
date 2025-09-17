@@ -95,12 +95,8 @@ Code samples:
 - [Logistic_Regression_Classifying_Spam_Non_Spam_Emails](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Logistic_Regression_Classifying_Spam_Non_Spam_Emails)
 - [K_Means_Segmenting_Customers](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/K_Means_Segmenting_Customers)
 
-- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS) - [Linear regression](https://colab.research.google.com/drive/1m3oQ9b0oYOT-DXEy0JCdgWPLGllHMb4V?usp=sharing)
+- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS) - [Support Vector Machine](https://colab.research.google.com/drive/16w3TDn_tAku17mum98EWTmjaLHAJcsk0?usp=sharing)
  
-- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS) - [Logistic regression](https://colab.research.google.com/drive/16w3TDn_tAku17mum98EWTmjaLHAJcsk0?usp=sharing)
-  
-- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS) - [K-means](https://colab.research.google.com/drive/1zw_6ZnFPCCh6mWDAd_VBMZB4VkC3ys2q?usp=sharing)
-
 Homework:
 
 - Select a few ML applications that you are using every day on your desktop or your mobile phone. Classify them into supervised or unsupervised learning. Try to identify the source of the data. Try to evaluate the experience of the application.
