@@ -79,6 +79,19 @@ Homework:
 ## Class 2
 Presentation:
 
+Class overview:
+- Learning more about models, features, and labels
+
+- Understanding feature engineering and ETLs
+
+- Understanding the challenges of deploying models in production
+
+- Assessing the performance of a model predictions
+
+- Understanding decision trees and ensemble models
+
+- Understanding support vector machines and kernel methods
+
 Readings:
 
 - [Wikipedia: Decision trees learning](https://en.wikipedia.org/wiki/Decision_tree_learning)
