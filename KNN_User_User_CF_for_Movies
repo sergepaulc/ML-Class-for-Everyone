@@ -1,1 +1,95 @@
+import numpy as np
+import pandas as pd
+from sklearn.neighbors import NearestNeighbors
+
+# ------------------------------
+# 1) Tiny example ratings matrix
+#    rows = users, cols = movies, values = ratings (1–5), NaN = not rated
+# ------------------------------
+ratings_df = pd.DataFrame(
+    {
+        "Movie A": [5, 4, np.nan, 2, np.nan],
+        "Movie B": [4, np.nan, 2, 2, 1],
+        "Movie C": [np.nan, 5, 1, 2, 2],
+        "Movie D": [2, 2, 4, np.nan, 4],
+        "Movie E": [1, 1, 5, np.nan, 5],
+    },
+    index=["Alice", "Bob", "Carol", "Dan", "Eve"],
+).astype(float)
+
+# ------------------------------
+# 2) Prep: mean-center users (handles personal rating scale)
+#    We'll fill NaNs with 0 *after* mean-centering so unrated items don't contribute to cosine.
+# ------------------------------
+user_means = ratings_df.mean(axis=1, skipna=True)
+ratings_centered = ratings_df.sub(user_means, axis=0)
+ratings_centered_filled = ratings_centered.fillna(0.0)
+
+# ------------------------------
+# 3) Fit KNN on users (cosine similarity)
+# ------------------------------
+knn = NearestNeighbors(metric="cosine", algorithm="brute")
+knn.fit(ratings_centered_filled.values)
+
+def similar_users(user_id, k=3):
+    """Return top-k most similar users to user_id (excluding the user)."""
+    if user_id not in ratings_df.index:
+        raise ValueError(f"Unknown user: {user_id}")
+    x = ratings_centered_filled.loc[[user_id]].values  # shape (1, n_items)
+    distances, idx = knn.kneighbors(x, n_neighbors=min(k+1, len(ratings_df)))
+    # cosine distance -> similarity = 1 - distance
+    sims = 1 - distances.flatten()
+    neigh_idx = idx.flatten()
+    # drop the user herself if present in neighbors
+    mask = ratings_df.index[neigh_idx] != user_id
+    return pd.Series(sims[mask], index=ratings_df.index[neigh_idx][mask]).sort_values(ascending=False)
+
+def predict_ratings_for_user(user_id, k=3):
+    """
+    Predict ratings for *unseen* movies using mean-centered
+    weighted-average of K similar users:
+        r_hat(u,i) = mu_u + sum_v sim(u,v) * (r(v,i) - mu_v) / sum |sim(u,v)|
+    """
+    sims = similar_users(user_id, k=k)
+    neighbors = sims.index
+    sim_vals = sims.values
+
+    # Neighbor ratings and means
+    neigh_r = ratings_df.loc[neighbors]                    # (k, n_items)
+    neigh_means = user_means.loc[neighbors]                # (k,)
+    neigh_centered = neigh_r.sub(neigh_means, axis=0)      # center neighbors
+
+    # Weighted sum of neighbors' centered ratings
+    weights = np.abs(sim_vals)
+    weights[weights == 0] = 1e-12  # avoid divide-by-zero
+    num = (neigh_centered.T @ sim_vals)                    # (n_items,)
+    den = (np.abs(neigh_centered.notna()).T @ weights)     # count*|sim| where rated
+
+    # Where nobody rated, keep denom tiny to avoid nan
+    den = np.where(den == 0, 1e-12, den)
+    centered_pred = num / den
+
+    # Add back target user's mean
+    preds = pd.Series(centered_pred, index=ratings_df.columns) + user_means.loc[user_id]
+
+    # Only keep movies the user hasn't rated
+    unseen = ratings_df.loc[user_id].isna()
+    return preds[unseen].sort_values(ascending=False)
+
+def recommend(user_id, top_n=3, k=3):
+    """Return top-N recommended movies for the user, with predicted ratings."""
+    preds = predict_ratings_for_user(user_id, k=k)
+    return preds.head(top_n)
+
+# ------------------------------
+# 4) Example usage
+# ------------------------------
+print("Nearest users to Alice:")
+print(similar_users("Alice", k=3), "\n")
+
+print("Predicted ratings for Alice (unseen movies):")
+print(predict_ratings_for_user("Alice", k=3), "\n")
+
+print("Top-3 recommendations for Alice:")
+print(recommend("Alice", top_n=3, k=3))
 
