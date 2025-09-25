@@ -103,3 +103,35 @@ Homework:
 - Since you completed ahead of schedule and with a lower budget your classification app, you are now being asked to develop a segmentation app for the customers that will be visiting and purchasing on the store. That app could leverage the labels of your classification apps. Please put your thoughts in the same google document that you use for your previous homework.
 
 Note: You can be as creative as you want in terms of the product plan that you will use to drive the development of those apps but at least describe the “what” and “why” of the apps, the data sources/features, the possible models, and any KPIs. If you are running out of time, just do something simple in a few sentences for each homework in ½ page. If you have time, do as much as you can 🙂
+
+## Class 3
+Presentation:
+
+Class overview:
+- Learning about the K-nearest neighbor algorithm
+- An introduction to recommender systems: Content filtering - Collaborative filtering: memory and model-based approaches
+- A use case for personalizing user experiences
+- Data pipelines for generating batches and streaming ETLs
+- Data pipelines for training models and deploying models in inference
+- Model experimentation
+- A short introduction to deep learning artificial neural networks
+
+Readings:
+
+- [Wikiepdia: k-nearest neighbors algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)
+- [Wikipedia: Recommender systems](https://en.wikipedia.org/wiki/Recommender_system)
+- [Wikipedia; Neural network](https://en.wikipedia.org/wiki/Neural_network_(machine_learning)
+
+
+Videos:
+- [The history of Amazon's recommendation algorithm](https://www.youtube.com/watch?v=GSQj27ps854)
+- [3Blue1Brown](https://youtu.be/aircAruvnKk?si=ohEGS9r47wcB4a0K)
+ 
+Homework:
+
+- You have been hired to be the first Product Manager, Program Manager, or Designer for a new online store. Your first assignment is to lead the development of an ML application for classifying the products across various categories that will be available on the store. Consider that the store will provide up to 500 products from many suppliers across many types of categories for consumers such as home decoration, cooking, fashion, fitness…To get started on that assignment, please propose a small draft of your proposed plan for that app. Please put your thoughts in the same google document that you use for your previous homework.
+- Since you completed ahead of schedule and with a lower budget your classification app, you are now being asked to develop a segmentation app for the customers that will be visiting and purchasing on the store. That app could leverage the labels of your classification apps. Please put your thoughts in the same google document that you use for your previous homework.
+
+Note: You can be as creative as you want in terms of the product plan that you will use to drive the development of those apps but at least describe the “what” and “why” of the apps, the data sources/features, the possible models, and any KPIs. If you are running out of time, just do something simple in a few sentences for each homework in ½ page. If you have time, do as much as you can 🙂
+
+
