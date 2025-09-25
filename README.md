@@ -127,6 +127,9 @@ Videos:
 - [The history of Amazon's recommendation algorithm](https://www.youtube.com/watch?v=GSQj27ps854)
 - [3Blue1Brown: But what is a neural network?](https://youtu.be/aircAruvnKk?si=ohEGS9r47wcB4a0K)
  
+Code samples:
+- 
+
 Homework:
 
 Answer the following questions. Note: please limit your answers to a few concise sentences:
