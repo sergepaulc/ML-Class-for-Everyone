@@ -1,1 +1,32 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsRegressor
+
+# Sample training data (house sizes in square feet, prices in $1000s)
+house_sizes = np.array([[750], [800], [850], [900], [950], [1000], [1200], [1500], [1800], [2000]])
+house_prices = np.array([150, 160, 170, 180, 190, 200, 240, 300, 360, 400])
+
+# Create KNN regressor with K=3
+knn = KNeighborsRegressor(n_neighbors=3)
+knn.fit(house_sizes, house_prices)
+
+# Predict prices for new house sizes
+test_sizes = np.array([[820], [1000], [1700]])
+predicted_prices = knn.predict(test_sizes)
+
+print("Predicted prices for houses:", list(zip(test_sizes.flatten(), predicted_prices)))
+
+# Visualize results
+size_range = np.linspace(700, 2100, 200).reshape(-1, 1)
+pred_curve = knn.predict(size_range)
+
+plt.scatter(house_sizes, house_prices, color="blue", label="Training data")
+plt.plot(size_range, pred_curve, color="red", label="KNN prediction (k=3)")
+plt.scatter(test_sizes, predicted_prices, color="green", label="Predictions", marker="x", s=100)
+plt.xlabel("House Size (sq ft)")
+plt.ylabel("Price ($1000s)")
+plt.title("KNN Regression (k=3) for House Prices")
+plt.legend()
+plt.grid(True)
+plt.show()
 
