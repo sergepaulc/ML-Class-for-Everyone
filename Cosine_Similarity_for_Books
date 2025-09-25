@@ -1,1 +1,40 @@
+import numpy as np
+import pandas as pd
+from sklearn.metrics.pairwise import cosine_similarity
+
+# --- Example dataset: Books with feature vectors ---
+# Features: [Fantasy, Mystery, Romance, ScienceFiction, NonFiction]
+books = {
+    "Book A": [1, 0, 1, 0, 0],   # Fantasy + Romance
+    "Book B": [1, 1, 0, 0, 0],   # Fantasy + Mystery
+    "Book C": [0, 1, 0, 1, 0],   # Mystery + Sci-Fi
+    "Book D": [0, 0, 1, 0, 0],   # Romance
+    "Book E": [0, 0, 0, 1, 1],   # Sci-Fi + NonFiction
+}
+
+# Convert to DataFrame
+df = pd.DataFrame(books).T
+df.columns = ["Fantasy", "Mystery", "Romance", "Sci-Fi", "NonFiction"]
+
+print("Book feature matrix:\n")
+print(df)
+
+# --- Compute cosine similarity between books ---
+cosine_sim = cosine_similarity(df.values)
+
+# Create similarity DataFrame
+cosine_df = pd.DataFrame(cosine_sim, index=books.keys(), columns=books.keys())
+
+print("\nCosine similarity between books:\n")
+print(cosine_df.round(2))
+
+# --- Example recommendation function ---
+def recommend(book_name, top_n=2):
+    sim_scores = cosine_df[book_name].sort_values(ascending=False)
+    recommendations = sim_scores.iloc[1:top_n+1]  # exclude self
+    return recommendations
+
+# Recommend similar books to "Book A"
+print("\nRecommended books similar to 'Book A':\n")
+print(recommend("Book A"))
 
