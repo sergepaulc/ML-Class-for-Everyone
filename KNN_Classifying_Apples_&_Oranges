@@ -1,1 +1,54 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier
+
+# Training data: [sweetness, crunchiness]
+X = np.array([
+    [7, 8], [6, 7], [8, 8],   # Apples (sweet, crunchy)
+    [4, 3], [3, 4], [4, 2]    # Oranges (less crunchy, less sweet)
+])
+
+# Labels: 0 = Apple, 1 = Orange
+y = np.array([0, 0, 0, 1, 1, 1])
+
+# Create KNN classifier with k=3
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X, y)
+
+# Predict fruit type for new samples
+test_points = np.array([[5, 6], [7, 7], [3, 3]])  # unknown fruits
+predictions = knn.predict(test_points)
+
+fruit_names = {0: "Apple", 1: "Orange"}
+for point, pred in zip(test_points, predictions):
+    print(f"Fruit with (Sweetness={point[0]}, Crunchiness={point[1]}) → Predicted: {fruit_names[pred]}")
+
+# --- Visualization ---
+# Create meshgrid for decision boundaries
+x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.1),
+                     np.arange(y_min, y_max, 0.1))
+
+Z = knn.predict(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
+
+plt.figure(figsize=(7,5))
+plt.contourf(xx, yy, Z, alpha=0.3, cmap=plt.cm.RdYlBu)
+
+# Plot training points
+for label in np.unique(y):
+    plt.scatter(X[y == label, 0], X[y == label, 1],
+                label=fruit_names[label], edgecolor="k", s=100)
+
+# Plot test points
+plt.scatter(test_points[:, 0], test_points[:, 1], marker="x", s=120,
+            color="black", label="Test points")
+
+plt.xlabel("Sweetness")
+plt.ylabel("Crunchiness")
+plt.title("KNN (k=3) Fruit Classification: Apples vs Oranges")
+plt.legend()
+plt.grid(True)
+plt.show()
 
