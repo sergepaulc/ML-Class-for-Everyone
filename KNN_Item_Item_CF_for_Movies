@@ -1,1 +1,116 @@
+import numpy as np
+import pandas as pd
+from sklearn.neighbors import NearestNeighbors
+
+# ------------------------------
+# 1) Tiny example user–movie rating matrix
+#    rows = users, cols = movies, values = ratings (1–5), NaN = not rated
+# ------------------------------
+R = pd.DataFrame(
+    {
+        "Movie A": [5, 4, np.nan, 2, np.nan],
+        "Movie B": [4, np.nan, 2, 2, 1],
+        "Movie C": [np.nan, 5, 1, 2, 2],
+        "Movie D": [2, 2, 4, np.nan, 4],
+        "Movie E": [1, 1, 5, np.nan, 5],
+    },
+    index=["Alice", "Bob", "Carol", "Dan", "Eve"],
+).astype(float)
+
+# ------------------------------
+# 2) Mean-center by user to remove user bias
+#    (users have different personal rating scales)
+# ------------------------------
+user_means = R.mean(axis=1, skipna=True)
+R_centered = R.sub(user_means, axis=0)          # keep NaN for unrated
+R_centered_filled = R_centered.fillna(0.0)      # 0 so unrated items don't affect cosine
+
+# ------------------------------
+# 3) Fit KNN on *items* (columns) using cosine similarity
+#    We'll build an index: each item vector is the column of centered ratings
+# ------------------------------
+item_matrix = R_centered_filled.values.T        # shape: (n_items, n_users)
+item_names = R.columns.to_numpy()
+
+knn_items = NearestNeighbors(metric="cosine", algorithm="brute")
+knn_items.fit(item_matrix)
+
+def similar_items(item_name: str, k: int = 5):
+    """Top-k most similar items to `item_name` (cosine sim)."""
+    if item_name not in R.columns:
+        raise ValueError(f"Unknown item: {item_name}")
+    i = list(R.columns).index(item_name)
+    distances, idx = knn_items.kneighbors(item_matrix[i:i+1, :],
+                                          n_neighbors=min(k+1, len(item_names)))
+    sims = 1 - distances.flatten()
+    nbr_idx = idx.flatten()
+    # drop the item itself
+    mask = item_names[nbr_idx] != item_name
+    return pd.Series(sims[mask], index=item_names[nbr_idx][mask]).sort_values(ascending=False)
+
+# ------------------------------
+# 4) Predict ratings for a user using item–item neighbors
+#    Score formula (user-mean-centered):
+#    r_hat(u,i) = mu_u + sum_j sim(i,j) * (r(u,j) - mu_u) / sum_j |sim(i,j)|
+#    where j are neighbor items that user u has rated.
+# ------------------------------
+def predict_for_user_item_item(user_id: str, k: int = 5, like_threshold: float | None = None):
+    """
+    Predict ratings for all *unseen* items for user_id using item–item CF.
+    If like_threshold is given, we only use user's rated items >= threshold as neighbors (liked items).
+    """
+    if user_id not in R.index:
+        raise ValueError(f"Unknown user: {user_id}")
+
+    user_row = R.loc[user_id]
+    user_centered = R_centered.loc[user_id]
+    seen_mask = user_row.notna()
+    unseen_items = R.columns[~seen_mask]
+
+    # Optionally restrict the neighbor pool to "liked" items
+    if like_threshold is not None:
+        neighbor_pool_mask = (user_row >= like_threshold)
+    else:
+        neighbor_pool_mask = seen_mask
+
+    neighbor_items = R.columns[neighbor_pool_mask]
+    if len(neighbor_items) == 0:
+        return pd.Series(dtype=float)  # cold-start: no history
+
+    preds = {}
+    for target in unseen_items:
+        # get k most similar items to target, then intersect with user's neighbor pool
+        sims_all = similar_items(target, k=k*3)  # oversample then filter to keep k after intersection
+        sims = sims_all.loc[sims_all.index.intersection(neighbor_items)].head(k)
+
+        if sims.empty:
+            continue  # cannot score this item
+
+        # weights = similarities; values = user's centered ratings on those neighbor items
+        weights = sims.values
+        centered_ratings = user_centered.loc[sims.index].values  # (r(u,j) - mu_u)
+
+        num = np.dot(weights, centered_ratings)
+        den = np.sum(np.abs(weights)) + 1e-12
+        pred = user_means.loc[user_id] + num / den
+        preds[target] = pred
+
+    return pd.Series(preds).sort_values(ascending=False)
+
+def recommend(user_id: str, top_n: int = 3, k: int = 5, like_threshold: float | None = None):
+    """Top-N movie recommendations for user_id with predicted scores."""
+    preds = predict_for_user_item_item(user_id, k=k, like_threshold=like_threshold)
+    return preds.head(top_n)
+
+# ------------------------------
+# 5) Examples
+# ------------------------------
+print("Items similar to 'Movie E':")
+print(similar_items("Movie E", k=3), "\n")
+
+print("Predicted ratings for Alice (using all rated items as neighbors):")
+print(predict_for_user_item_item("Alice", k=3), "\n")
+
+print("Top-3 recommendations for Alice (neighbors restricted to 'liked' items >= 4):")
+print(recommend("Alice", top_n=3, k=3, like_threshold=4))
 
