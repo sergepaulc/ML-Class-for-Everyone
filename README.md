@@ -120,7 +120,7 @@ Readings:
 
 - [Wikiepdia: k-nearest neighbors algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)
 - [Wikipedia: Recommender systems](https://en.wikipedia.org/wiki/Recommender_system)
-- [Wikipedia; Neural network](https://en.wikipedia.org/wiki/Neural_network_(machine_learning))
+- [Wikipedia: Neural network](https://en.wikipedia.org/wiki/Neural_network_(machine_learning))
 
 
 Videos:
