@@ -129,8 +129,6 @@ Videos:
  
 Homework:
 
-Homework:
-
 Answer the following questions. Note: please limit your answers to a few concise sentences:
 - What is a labeled training set?
 - What are the two most common tasks that a supervised machine learning model can do?
