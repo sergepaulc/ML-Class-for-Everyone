@@ -128,7 +128,11 @@ Videos:
 - [3Blue1Brown: But what is a neural network?](https://youtu.be/aircAruvnKk?si=ohEGS9r47wcB4a0K)
  
 Code samples:
-- 
+- [KNN_Predicting_Houses_Prices](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/KNN_Predicting_Houses_Prices)
+- [KNN_Classifying_Apples_&_Oranges](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/KNN_Classifying_Apples_%26_Oranges)
+- [Cosine_Similarity_for_Books](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Cosine_Similarity_for_Books)
+- [KNN_User_User_CF_for_Movies](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/KNN_User_User_CF_for_Movies)
+- [KNN_Item_Item_CF_for_Movies](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/KNN_Item_Item_CF_for_Movies)
 
 Homework:
 
