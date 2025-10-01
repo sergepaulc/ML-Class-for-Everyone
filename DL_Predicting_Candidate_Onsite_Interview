@@ -1,3 +1,8 @@
+#Notes
+#Inputs: education (categorical → one-hot), experience (years → standardized), phone_score (0–1; pass/fail can be 0/1).
+#Loss: BCEWithLogitsLoss = binary cross-entropy with an internal sigmoid.
+#Backprop happens at loss.backward(), and weights update with opt.step().
+
 # pip install torch scikit-learn pandas numpy
 import torch, numpy as np, pandas as pd
 from sklearn.model_selection import train_test_split
