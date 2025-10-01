@@ -163,8 +163,11 @@ Readings:
 - [Wikipedia: Transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture))
 - [Transformer: A Novel Neural Network Architecture for Language Understanding](https://research.google/blog/transformer-a-novel-neural-network-architecture-for-language-understanding/)
 
-
 Videos:
+- [Neural Networks Explained](https://youtu.be/GvQwE2OhL8I?si=hdSoA4zWmhkw7Q-4)
+- [Neural Networks Explained Pt 2](https://youtu.be/9ZsyQZouOQ8?si=42ScjTVCAo_ipHzz)
+- [Neural Networks Demystified [Part 3: Gradient Descent]](https://youtu.be/5u0jaA3qAGk?si=SdRUgqn0YYYEvCcr)
+- [Neural Networks Demystified [Part 4: Backpropagation]](https://youtu.be/GlcnxUlrtek?si=pPOotfgZcZPSKjEZ)
 
 
 Code samples:
