@@ -168,7 +168,8 @@ Videos:
 - [Neural Networks Explained Pt 2](https://youtu.be/9ZsyQZouOQ8?si=42ScjTVCAo_ipHzz)
 - [Neural Networks Demystified [Part 3: Gradient Descent]](https://youtu.be/5u0jaA3qAGk?si=SdRUgqn0YYYEvCcr)
 - [Neural Networks Demystified [Part 4: Backpropagation]](https://youtu.be/GlcnxUlrtek?si=pPOotfgZcZPSKjEZ)
-
+- [Large Language Models explained briefly](https://youtu.be/LPZh9BOjkQs?si=czXZkM2L_xGJMLux)
+- [Transformers, the tech behind LLMs | Deep Learning Chapter 5](https://youtu.be/wjZofJX0v4M?si=d0qYKlwB6PeAqX1I)
 
 Code samples:
 
