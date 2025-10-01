@@ -161,6 +161,7 @@ Readings:
 
 - [Wikipedia: Backpropagation](https://en.wikipedia.org/wiki/Backpropagation)
 - [Wikipedia: Transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture))
+- [Transformer: A Novel Neural Network Architecture for Language Understanding](https://research.google/blog/transformer-a-novel-neural-network-architecture-for-language-understanding/)
 
 
 Videos:
