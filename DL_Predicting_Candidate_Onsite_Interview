@@ -1,1 +1,118 @@
+# pip install torch scikit-learn pandas numpy
+import torch, numpy as np, pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import accuracy_score, roc_auc_score
 
+# -----------------------------
+# 1) Toy dataset (replace with your real data)
+# -----------------------------
+np.random.seed(42)
+N = 500
+
+edu_levels = np.random.choice(["hs", "bachelor", "master", "phd"], size=N, p=[0.15, 0.5, 0.3, 0.05])
+years_exp  = np.clip(np.random.normal(5, 3, size=N), 0, 25)
+phone_score = np.clip(np.random.beta(4,2, size=N), 0, 1)       # 0–1
+
+# Ground-truth rule (unknown to the model) to generate labels:
+logit = (
+    0.4 * (edu_levels == "bachelor") +
+    0.9 * (edu_levels == "master") +
+    1.3 * (edu_levels == "phd") +
+    0.08 * years_exp +
+    2.0 * phone_score - 2.0
+)
+y = (1 / (1 + np.exp(-logit)) > np.random.rand(N)).astype(int)  # stochastic labels
+
+df = pd.DataFrame({
+    "education": edu_levels,
+    "experience": years_exp,
+    "phone_score": phone_score,
+    "onsite": y
+})
+
+# -----------------------------
+# 2) Preprocess: one-hot 'education', scale numerics
+# -----------------------------
+X = df[["education", "experience", "phone_score"]]
+y = df["onsite"].values
+
+pre = ColumnTransformer(
+    transformers=[
+        ("edu", OneHotEncoder(drop="first"), ["education"]),  # one-hot (drop first to avoid redundancy)
+        ("num", StandardScaler(), ["experience", "phone_score"])
+    ],
+    remainder="drop"
+)
+
+X_proc = pre.fit_transform(X)               # -> numpy array
+input_dim = X_proc.shape[1]
+
+X_train, X_val, y_train, y_val = train_test_split(
+    X_proc, y, test_size=0.2, random_state=0, stratify=y
+)
+
+# Convert to tensors
+X_train_t = torch.tensor(X_train.toarray() if hasattr(X_train, "toarray") else X_train, dtype=torch.float32)
+X_val_t   = torch.tensor(X_val.toarray()   if hasattr(X_val, "toarray")   else X_val,   dtype=torch.float32)
+y_train_t = torch.tensor(y_train, dtype=torch.float32).unsqueeze(1)
+y_val_t   = torch.tensor(y_val,   dtype=torch.float32).unsqueeze(1)
+
+# -----------------------------
+# 3) Model: a tiny MLP
+# -----------------------------
+class MLP(torch.nn.Module):
+    def __init__(self, in_features):
+        super().__init__()
+        self.net = torch.nn.Sequential(
+            torch.nn.Linear(in_features, 16),
+            torch.nn.ReLU(),
+            torch.nn.Linear(16, 1)  # logits
+        )
+    def forward(self, x):
+        return self.net(x)
+
+model = MLP(input_dim)
+criterion = torch.nn.BCEWithLogitsLoss()             # combines sigmoid + binary cross-entropy
+opt = torch.optim.Adam(model.parameters(), lr=1e-3)
+
+# -----------------------------
+# 4) Training loop (backprop in action)
+# -----------------------------
+EPOCHS = 40
+for epoch in range(EPOCHS):
+    model.train()
+    opt.zero_grad()
+    logits = model(X_train_t)                        # forward pass
+    loss = criterion(logits, y_train_t)              # compute loss
+    loss.backward()                                  # <<< backpropagates gradients
+    opt.step()                                       # update weights
+
+    # quick validation
+    model.eval()
+    with torch.no_grad():
+        val_logits = model(X_val_t)
+        val_probs  = torch.sigmoid(val_logits).cpu().numpy().ravel()
+        val_pred   = (val_probs >= 0.5).astype(int)
+        acc = accuracy_score(y_val, val_pred)
+        auc = roc_auc_score(y_val, val_probs)
+    if (epoch+1) % 10 == 0:
+        print(f"Epoch {epoch+1:02d} | loss={loss.item():.4f} | val_acc={acc:.3f} | val_auc={auc:.3f}")
+
+# -----------------------------
+# 5) Inference helper
+# -----------------------------
+def predict_onsite(education: str, experience_years: float, phone_score: float):
+    row = pd.DataFrame([{"education": education,
+                         "experience": experience_years,
+                         "phone_score": phone_score}])
+    x = pre.transform(row)
+    x_t = torch.tensor(x.toarray() if hasattr(x, "toarray") else x, dtype=torch.float32)
+    with torch.no_grad():
+        p = torch.sigmoid(model(x_t)).item()
+    return p
+
+# Example prediction
+print("Prob(onsite):", predict_onsite("master", 6, 0.8))
