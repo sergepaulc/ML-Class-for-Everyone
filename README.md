@@ -52,9 +52,7 @@ Code samples:
 - [Logistic_Regression_Classifying_Spam_Non_Spam_Emails](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Logistic_Regression_Classifying_Spam_Non_Spam_Emails)
 - [K_Means_Segmenting_Customers](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/K_Means_Segmenting_Customers)
 
-- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS) - [Linear regression](https://colab.research.google.com/drive/1m3oQ9b0oYOT-DXEy0JCdgWPLGllHMb4V?usp=sharing)
-- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS) - [Logistic regression](https://colab.research.google.com/drive/16w3TDn_tAku17mum98EWTmjaLHAJcsk0?usp=sharing)
-- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS) - [K-means](https://colab.research.google.com/drive/1zw_6ZnFPCCh6mWDAd_VBMZB4VkC3ys2q?usp=sharing)
+- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS)
 
 Homework:
 
@@ -95,7 +93,7 @@ Code samples:
 - [Random_Forest_Classifying_Iris_Flowers](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Random_Forest_Classifying_Iris_Flowers)
 - [Support_Vector_Machine_Classifying_Two_Datasets](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Support_Vector_Machine_Classifying_Two_Datasets)
 
-- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS) - [Support Vector Machine](https://colab.research.google.com/drive/16w3TDn_tAku17mum98EWTmjaLHAJcsk0?usp=sharing)
+- [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS)
  
 Homework:
 
