@@ -148,3 +148,17 @@ Answer the following questions. Note: please limit your answers to a few concise
 - What are the advantages of using a deep learning model compared to other traditional machine learning models?
 - Why deep learning models are somewhat considered as a “black box” model compared for instance to decision trees that are considered as a “white box” model?
 
+## Class 4
+Presentation:
+
+Class overview:
+- Deeper dive about deep learning
+- An introduction to the backpropagation algorithm
+- Discriminative versus generative modeling
+- Language models with transformer networks
+- Fundamental concepts of large language models (LLMs)
+= Summary of key LLM milestones and technologies
+
+
+
+
