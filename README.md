@@ -159,8 +159,8 @@ Class overview:
 
 Readings:
 
-[Wikipedia: Backpropagation](https://en.wikipedia.org/wiki/Backpropagation)
-[Wikipedia: Transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture))
+- [Wikipedia: Backpropagation](https://en.wikipedia.org/wiki/Backpropagation)
+- [Wikipedia: Transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture))
 
 
 Videos:
