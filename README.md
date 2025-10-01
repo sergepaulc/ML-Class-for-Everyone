@@ -172,6 +172,7 @@ Videos:
 - [Transformers, the tech behind LLMs | Deep Learning Chapter 5](https://youtu.be/wjZofJX0v4M?si=d0qYKlwB6PeAqX1I)
 
 Code samples:
+- [DL_Predicting_Candidate_Onsite_Interview](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/DL_Predicting_Candidate_Onsite_Interview)
 
 
 
