@@ -155,8 +155,18 @@ Class overview:
 - Discriminative versus generative modeling
 - Language models with transformer networks
 - Fundamental concepts of large language models (LLMs)
-= Summary of key LLM milestones and technologies
+- Summary of key LLM milestones and technologies
 
+Readings:
+
+[Wikipedia: Backpropagation](https://en.wikipedia.org/wiki/Backpropagation)
+[Wikipedia: Transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)
+
+
+Videos:
+
+
+Code samples:
 
 
 
