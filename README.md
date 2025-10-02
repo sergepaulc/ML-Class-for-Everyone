@@ -177,5 +177,52 @@ Code samples:
 - [DL_Predicting_Candidate_Onsite_Interview](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/DL_Predicting_Candidate_Onsite_Interview)
 
 Final Project:
+Final project to be presented in Class 7
+
+Each student should propose a AI/ML feature, application, product, or project that ideally could be developed and implemented within her or his organization. 
+
+For students with a business background, focus on the opportunity, the experience and the benefits.
+Articulate the model predictions, the agents, and the training data for the model.
+What the model will do, what the agents will do, what is the data needed.
+
+
+For students with a technology background, focus on the model and the data pipeline.
+Articulate the algorithm of the model/agents and the architecture of the data pipeline.
+Ideally write some sample codes (leveraging a language model) in a notebook
+
+
+The project deliverables could include some of the following sections:
+
+ML-powered application:
+What, why, business case, business plan…
+Use cases, user experiences, features, requirements, KPIs…
+
+Models:
+Machine learning tasks
+Model predictions
+Type of learning
+Model performance/evaluation
+Success metrics and KPIs
+
+Agents:
+Interfaces to the user/application
+Interfaces to the model
+Data required
+
+Features:
+Data sources
+Batch data
+Streaming data
+Feature sharing
+
+Machine learning pipelines:
+End-user application
+Training
+Inference
+Experimentation
+Feature store
+
+For this project, use as much as you can ChatGPT or any other language model (Gemini, LeChat) to research your proposal, data sources, features, models, and code samples.
+
 
 
