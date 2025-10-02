@@ -177,6 +177,7 @@ Code samples:
 - [DL_Predicting_Candidate_Onsite_Interview](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/DL_Predicting_Candidate_Onsite_Interview)
 
 Final Project:
+
 Final project to be presented in Class 7
 
 Each student should propose a AI/ML feature, application, product, or project that ideally could be developed and implemented within her or his organization. 
