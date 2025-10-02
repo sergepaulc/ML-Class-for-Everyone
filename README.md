@@ -118,6 +118,8 @@ Readings:
 
 - [Wikiepdia: k-nearest neighbors algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)
 - [Wikipedia: Recommender systems](https://en.wikipedia.org/wiki/Recommender_system)
+- [Matrix factorization (not too difficult reading)](https://asiliconvalleyinsider.com/wp-content/uploads/2023/08/recommender-systems-netflix-1.pdf0
+- [Factorization machines (difficult reading)](https://asiliconvalleyinsider.com/wp-content/uploads/2023/08/rendle2010fm-1.pdf)
 - [Wikipedia: Neural network](https://en.wikipedia.org/wiki/Neural_network_(machine_learning))
 
 
@@ -174,5 +176,6 @@ Videos:
 Code samples:
 - [DL_Predicting_Candidate_Onsite_Interview](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/DL_Predicting_Candidate_Onsite_Interview)
 
+Final Project:
 
 
