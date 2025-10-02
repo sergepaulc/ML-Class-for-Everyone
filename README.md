@@ -194,33 +194,33 @@ Ideally write some sample codes (leveraging a language model) in a notebook.
 The project deliverables could include some of the following sections:
 
 ML-powered application:
-What, why, business case, business plan…
-Use cases, user experiences, features, requirements, KPIs…
+- What, why, business case, business plan…
+- Use cases, user experiences, features, requirements, KPIs…
 
 Models:
-Machine learning tasks
-Model predictions
-Type of learning
-Model performance/evaluation
-Success metrics and KPIs
+- Machine learning tasks
+- Model predictions
+- Type of learning
+- Model performance/evaluation
+- Success metrics and KPIs
 
 Agents:
-Interfaces to the user/application
-Interfaces to the model
-Data required
+- Interfaces to the user/application
+- Interfaces to the model
+- Data required
 
 Features:
-Data sources
-Batch data
-Streaming data
-Feature sharing
+- Data sources
+- Batch data
+- Streaming data
+- Feature sharing
 
 Machine learning pipelines:
-End-user application
-Training
-Inference
-Experimentation
-Feature store
+- End-user application
+- Training
+- Inference
+- Experimentation
+- Feature store
 
 For this project, use as much as you can ChatGPT or any other language model (Gemini, LeChat) to research your proposal, data sources, features, models, and code samples.
 
