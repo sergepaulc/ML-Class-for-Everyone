@@ -180,7 +180,7 @@ Final Project:
 
 Final project to be presented in Class 7
 
-Each student should propose a AI/ML feature, application, product, or project that ideally could be developed and implemented within her or his organization. 
+Each student should propose a AI/ML feature, application, product, or project that ideally could be developed, implemented, and/or marketed within her or his organization. 
 
 For students with a business background, focus on the opportunity, the experience and the benefits.
 Articulate the model predictions, the agents, and the training data for the model.
