@@ -188,7 +188,7 @@ What the model will do, what the agents will do, what is the data needed.
 
 For students with a technology background, focus on the model and the data pipeline.
 Articulate the algorithm of the model/agents and the architecture of the data pipeline.
-Ideally write some sample codes (leveraging a language model) in a notebook
+Ideally write some sample codes (leveraging a language model) in a notebook.
 
 
 The project deliverables could include some of the following sections:
