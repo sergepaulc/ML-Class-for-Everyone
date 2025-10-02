@@ -182,7 +182,7 @@ Final project to be presented in Class 7
 
 Each student should propose a AI/ML feature, application, product, or project that ideally could be developed, implemented, and/or marketed within her or his organization. 
 
-For students with a business background, focus on the opportunity, the experience and the benefits.
+For students with a business background, focus on the opportunity, the experience, and the benefits.
 Articulate the model predictions, the agents, and the training data for the model.
 What the model will do, what the agents will do, what is the data needed.
 
@@ -224,6 +224,7 @@ Machine learning pipelines:
 - Feature store
 
 For this project, use as much as you can ChatGPT or any other language model (Gemini, LeChat) to research your proposal, data sources, features, models, agents, and code samples.
+Also, you can work on your own or team with a few classmates.
 
 
 
