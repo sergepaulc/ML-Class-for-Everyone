@@ -223,7 +223,7 @@ Machine learning pipelines:
 - Experimentation
 - Feature store
 
-For this project, use as much as you can ChatGPT or any other language model (Gemini, LeChat) to research your proposal, data sources, features, models, and code samples.
+For this project, use as much as you can ChatGPT or any other language model (Gemini, LeChat) to research your proposal, data sources, features, models, agents, and code samples.
 
 
 
