@@ -53,6 +53,7 @@ Code samples:
 - [K_Means_Segmenting_Customers](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/K_Means_Segmenting_Customers)
 
 - [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS)
+- [Machine Learning Notebooks, 3rd edition from Aurélien Geron](https://github.com/ageron/handson-ml3)
 
 Homework:
 
