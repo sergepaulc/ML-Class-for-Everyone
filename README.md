@@ -53,7 +53,7 @@ Code samples:
 - [K_Means_Segmenting_Customers](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/K_Means_Segmenting_Customers)
 
 - [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS)
-- [Machine Learning Notebooks, 3rd edition from Aurélien Geron](https://github.com/ageron/handson-ml3).
+- [Machine Learning Notebooks, 3rd edition from Aurélien Geron](https://github.com/ageron/handson-ml3)
 
 Homework:
 
@@ -95,6 +95,7 @@ Code samples:
 - [Support_Vector_Machine_Classifying_Two_Datasets](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Support_Vector_Machine_Classifying_Two_Datasets)
 
 - [Machine Learning for Everybody from Kylie Ying](https://youtu.be/i_LwzRVP7bg?si=7WOqhtdQkiQcvzVS)
+- [Machine Learning Notebooks, 3rd edition from Aurélien Geron](https://github.com/ageron/handson-ml3)
  
 Homework:
 
@@ -134,6 +135,8 @@ Code samples:
 - [Cosine_Similarity_for_Books](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Cosine_Similarity_for_Books)
 - [KNN_User_User_CF_for_Movies](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/KNN_User_User_CF_for_Movies)
 - [KNN_Item_Item_CF_for_Movies](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/KNN_Item_Item_CF_for_Movies)
+
+- [Machine Learning Notebooks, 3rd edition from Aurélien Geron](https://github.com/ageron/handson-ml3)
 
 Homework:
 
@@ -177,6 +180,8 @@ Videos:
 
 Code samples:
 - [DL_Predicting_Candidate_Onsite_Interview](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/DL_Predicting_Candidate_Onsite_Interview)
+
+- [Machine Learning Notebooks, 3rd edition from Aurélien Geron](https://github.com/ageron/handson-ml3)
 
 Final Project:
 
