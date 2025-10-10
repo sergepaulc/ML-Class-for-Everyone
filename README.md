@@ -247,15 +247,16 @@ Class overview:
 - Q-learning algorithm
 
 Readings:
-
-- [Wikipedia: Backpropagation](https://en.wikipedia.org/wiki/Backpropagation)
-- [Wikipedia: Transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture))
-- [Transformer: A Novel Neural Network Architecture for Language Understanding](https://research.google/blog/transformer-a-novel-neural-network-architecture-for-language-understanding/)
+- [Wikipedia: Diffusion Model](https://en.wikipedia.org/wiki/Diffusion_model)
+- [Wikipedia: Reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning)
+- [Quanta Magazine: The Physics Principle That Inspired Modern AI Art](https://www.quantamagazine.org/the-physics-principle-that-inspired-modern-ai-art-20230105/)
+- [Human-level control through deep reinforcement learning](https://www.nature.com/articles/nature14236)
+- [Mastering the game of Go with deep neural networks and tree search](https://www.nature.com/articles/nature16961)
 
 Videos:
-- [A friendly introduction to linear algebra for ML](https://youtu.be/LlKAna21fLE?si=U9SePjZn97TuayZO)
-- [LSTM is dead. Long Live Transformers!](https://youtu.be/S27pHKBEp30?si=DWZu1geh21XJQjYq)
-- [But how do AI images and videos actually work?](https://youtu.be/iv-5mZ_9CPY?si=4Zq3mupZNBILMaEH)
+- [Deep Dive into LLMs like ChatGPT from Andrej Karpathy](https://youtu.be/7xTGNNLPyMI?si=T4En1IyR45p9nZOi)
+- [But how do AI images and videos actually work?](https://youtu.be/iv-5mZ_9CPY?si=XJFj60A7X1EenbH9)
+- [Stanford CS234 Reinforcement Learning I Introduction to Reinforcement Learning I 2024 I Lecture 1](https://youtu.be/WsvFL-LjA6U?si=udRpAb79toQFphNn)
 
 
 
