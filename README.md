@@ -233,5 +233,29 @@ Machine learning pipelines:
 For this project, use as much as you can ChatGPT or any other language model (Gemini, LeChat) to research your proposal, data sources, features, models, agents, and code samples.
 Also, you can work on your own or team with a few classmates.
 
+## Class 5
+Presentation:
+
+Class overview:
+- High-dimensional data representation
+- A quick review of the algorithms for each type of learning
+- The ubiquity of transformer networks
+- Review of gradient descent and training of large language models
+- Deep dive into computer vision
+- Denoising diffusion models for image/video generation
+- Deep dive into reinforcement learning
+- Q-learning algorithm
+
+Readings:
+
+- [Wikipedia: Backpropagation](https://en.wikipedia.org/wiki/Backpropagation)
+- [Wikipedia: Transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture))
+- [Transformer: A Novel Neural Network Architecture for Language Understanding](https://research.google/blog/transformer-a-novel-neural-network-architecture-for-language-understanding/)
+
+Videos:
+- [A friendly introduction to linear algebra for ML](https://youtu.be/LlKAna21fLE?si=U9SePjZn97TuayZO)
+- [LSTM is dead. Long Live Transformers!](https://youtu.be/S27pHKBEp30?si=DWZu1geh21XJQjYq)
+- [But how do AI images and videos actually work?](https://youtu.be/iv-5mZ_9CPY?si=4Zq3mupZNBILMaEH)
+
 
 
