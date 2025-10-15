@@ -281,7 +281,8 @@ Readings:
 
 Videos:
 - [OpenAI Achieved Gold-Medal Standard at the 2025 International Mathematical Olympiad](https://youtu.be/EEIPtofVe2Q?si=igiNENAdzZnvBgJ-)
-- [Stanford CS330 Deep Multi-Task & Meta Learning - What is multi-task learning? I 2022 I Lecture 1](https://youtu.be/bkVCAk9Nsss?si=ZIBBl8kz819W15kg)
+- [Stanford CS330 Deep Multi-Task & Meta Learning - What is multi-task learning? I Lecture 1](https://youtu.be/bkVCAk9Nsss?si=ZIBBl8kz819W15kg)
+- [Stanford CS330 Deep Multi-Task & Meta Learning - Black Box Meta Learning I Lecture 4]
 - [Stanford CS224W: Machine Learning with Graphs Lecture 1.1](https://youtu.be/JAB_plj2rbA?si=rzFWweov0WaRzQHX)
 - [Stanford CS224W: Machine Learning with Graphs Lecture 1.2](https://youtu.be/aBHC6xzx9YI?si=qf9P0a4uKhM0wrC7)
 - [Stanford CS224W: Machine Learning with Graphs Lecture 1.3](https://youtu.be/P-m1Qv6-8cI?si=HWXtOzCC9VonHmo2)
