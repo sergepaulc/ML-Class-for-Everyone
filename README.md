@@ -272,10 +272,12 @@ Class overview:
 - Graph learning
 
 Readings:
+- [Wikipedia: Reasoning language model](https://en.wikipedia.org/wiki/Reasoning_language_model)
 - [Wikipedia: Meta-leaning](https://en.wikipedia.org/wiki/Meta-learning_(computer_science))
 - [Wikipedia: Multi-task learning](https://en.wikipedia.org/wiki/Multi-task_learning)
 - [Wikipedia: Graph neural network](https://en.wikipedia.org/wiki/Graph_neural_network)
 - [Berkeley: Learning to Learn](https://bair.berkeley.edu/blog/2017/07/18/learning-to-learn/)
+- [Google: The evolution of Graph Learning](https://research.google/blog/the-evolution-of-graph-learning/)
 
 
 
