@@ -66,6 +66,7 @@ Presentation:
 
 Class overview:
 - Learning more about models, features, and labels
+- High-dimensional data representation
 - Understanding feature engineering and ETLs
 - Understanding the challenges of deploying models in production
 - Assessing the performance of a model predictions
@@ -237,7 +238,6 @@ Also, you can work on your own or team with a few classmates.
 Presentation:
 
 Class overview:
-- High-dimensional data representation
 - A quick review of the algorithms for each type of learning
 - The ubiquity of transformer networks
 - Review of gradient descent and training of large language models
