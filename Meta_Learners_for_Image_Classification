@@ -1,6 +1,8 @@
-# MAML for few-shot image classification on tiny synthetic shape images
-# pip install torch numpy
+# MAML for few-shot image classification on tiny synthetic shape images (≤ 5 images per class)
+It builds simple 28×28 grayscale images of shapes (circle/square/triangle/plus/X, etc.)
+Everything runs offline - MAML learn to adapt in 1–5 gradient steps.
 
+# pip install torch numpy
 import math
 import random
 from typing import Dict, Tuple, List
