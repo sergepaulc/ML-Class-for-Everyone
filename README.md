@@ -284,5 +284,6 @@ Readings:
 Videos:
 - [Stanford CS224W: Machine Learning with Graphs Lecture 1.1](https://youtu.be/JAB_plj2rbA?si=rzFWweov0WaRzQHX)
 - [Stanford CS224W: Machine Learning with Graphs Lecture 1.2](https://youtu.be/aBHC6xzx9YI?si=qf9P0a4uKhM0wrC7)
+- [Stanford CS224W: Machine Learning with Graphs Lecture 1.3](https://youtu.be/P-m1Qv6-8cI?si=HWXtOzCC9VonHmo2)
 
 
