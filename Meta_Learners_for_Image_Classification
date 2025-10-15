@@ -1,1 +1,255 @@
+# MAML for few-shot image classification on tiny synthetic shape images
+# pip install torch numpy
+
+import math
+import random
+from typing import Dict, Tuple, List
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+# -----------------------------
+# 1) Tiny synthetic shape tasks
+# -----------------------------
+# Each task = N classes sampled from a pool of shapes.
+# Each class generates K support + Q query images (28x28).
+# Shapes are simple: circle, square, triangle, plus, X, diamond, horiz line, vert line.
+
+IMG_SIZE = 28
+
+def draw_circle():
+    img = np.zeros((IMG_SIZE, IMG_SIZE), dtype=np.float32)
+    rr, cc = np.ogrid[:IMG_SIZE, :IMG_SIZE]
+    cx, cy, r = IMG_SIZE//2, IMG_SIZE//2, IMG_SIZE//3
+    mask = (rr - cx)**2 + (cc - cy)**2 <= r*r
+    img[mask] = 1.0
+    return img
+
+def draw_square():
+    img = np.zeros((IMG_SIZE, IMG_SIZE), dtype=np.float32)
+    s = IMG_SIZE//3
+    x0, x1 = (IMG_SIZE - 2*s)//2, (IMG_SIZE + 2*s)//2
+    img[s:-s, s:-s] = 1.0
+    return img
+
+def draw_triangle():
+    img = np.zeros((IMG_SIZE, IMG_SIZE), dtype=np.float32)
+    h = IMG_SIZE - 8
+    for r in range(h):
+        c0 = IMG_SIZE//2 - r//2
+        c1 = IMG_SIZE//2 + r//2
+        img[r+4, c0:c1+1] = 1.0
+    return img
+
+def draw_plus():
+    img = np.zeros((IMG_SIZE, IMG_SIZE), dtype=np.float32)
+    w = IMG_SIZE//6
+    img[:, IMG_SIZE//2 - w: IMG_SIZE//2 + w] = 1.0
+    img[IMG_SIZE//2 - w: IMG_SIZE//2 + w, :] = 1.0
+    return img
+
+def draw_x():
+    img = np.zeros((IMG_SIZE, IMG_SIZE), dtype=np.float32)
+    for i in range(4, IMG_SIZE-4):
+        img[i, i] = 1.0
+        img[i, IMG_SIZE-1-i] = 1.0
+    return img
+
+def draw_diamond():
+    img = np.zeros((IMG_SIZE, IMG_SIZE), dtype=np.float32)
+    cx, cy = IMG_SIZE//2, IMG_SIZE//2
+    for r in range(IMG_SIZE):
+        for c in range(IMG_SIZE):
+            if abs(r - cx) + abs(c - cy) <= IMG_SIZE//3:
+                img[r, c] = 1.0
+    return img
+
+def draw_hline():
+    img = np.zeros((IMG_SIZE, IMG_SIZE), dtype=np.float32)
+    img[IMG_SIZE//2 - 2: IMG_SIZE//2 + 2, :] = 1.0
+    return img
+
+def draw_vline():
+    img = np.zeros((IMG_SIZE, IMG_SIZE), dtype=np.float32)
+    img[:, IMG_SIZE//2 - 2: IMG_SIZE//2 + 2] = 1.0
+    return img
+
+SHAPE_FUNCS = {
+    "circle": draw_circle,
+    "square": draw_square,
+    "triangle": draw_triangle,
+    "plus": draw_plus,
+    "x": draw_x,
+    "diamond": draw_diamond,
+    "hline": draw_hline,
+    "vline": draw_vline,
+}
+SHAPES = list(SHAPE_FUNCS.keys())
+
+def augment(img: np.ndarray) -> np.ndarray:
+    """Light noise + random small translation."""
+    # small translation
+    tx, ty = np.random.randint(-2, 3), np.random.randint(-2, 3)
+    shifted = np.zeros_like(img)
+    src_x0 = max(0, -tx)
+    src_y0 = max(0, -ty)
+    dst_x0 = max(0, tx)
+    dst_y0 = max(0, ty)
+    w = IMG_SIZE - abs(tx)
+    h = IMG_SIZE - abs(ty)
+    shifted[dst_y0:dst_y0+h, dst_x0:dst_x0+w] = img[src_y0:src_y0+h, src_x0:src_x0+w]
+
+    # noise
+    noise = np.random.normal(0, 0.05, size=shifted.shape).astype(np.float32)
+    out = np.clip(shifted + noise, 0.0, 1.0)
+    return out
+
+def make_class_images(shape_name: str, num: int) -> np.ndarray:
+    base = SHAPE_FUNCS[shape_name]()
+    imgs = [augment(base) for _ in range(num)]
+    imgs = np.stack(imgs, axis=0)  # [num, H, W]
+    return imgs
+
+def sample_task(N: int, K: int, Q: int) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    """Return support (x_s, y_s) and query (x_q, y_q) for one task."""
+    classes = random.sample(SHAPES, N)
+    xs, ys, xq, yq = [], [], [], []
+    for c_idx, cname in enumerate(classes):
+        imgs = make_class_images(cname, K + Q)
+        xs.append(imgs[:K])
+        xq.append(imgs[K:])
+        ys.extend([c_idx]*K)
+        yq.extend([c_idx]*Q)
+    x_s = torch.tensor(np.concatenate(xs, axis=0)).unsqueeze(1)  # [N*K, 1, 28, 28]
+    x_q = torch.tensor(np.concatenate(xq, axis=0)).unsqueeze(1)  # [N*Q, 1, 28, 28]
+    y_s = torch.tensor(ys, dtype=torch.long)
+    y_q = torch.tensor(yq, dtype=torch.long)
+    return x_s, y_s, x_q, y_q
+
+# -----------------------------
+# 2) Tiny ConvNet in functional form (for fast weights)
+# -----------------------------
+class TinyConv(nn.Module):
+    def __init__(self, n_classes: int):
+        super().__init__()
+        self.conv1 = nn.Conv2d(1, 16, 3, padding=1)
+        self.conv2 = nn.Conv2d(16, 32, 3, padding=1)
+        self.fc = nn.Linear(32 * 7 * 7, n_classes)
+        self.pool = nn.MaxPool2d(2, 2)
+
+    def params_dict(self) -> Dict[str, torch.Tensor]:
+        return {k: v for k, v in self.named_parameters()}
+
+    def forward_with(self, x, p: Dict[str, torch.Tensor]):
+        x = F.conv2d(x, p["conv1.weight"], p["conv1.bias"], padding=1)
+        x = F.relu(x)
+        x = self.pool(x)  # 28 -> 14
+
+        x = F.conv2d(x, p["conv2.weight"], p["conv2.bias"], padding=1)
+        x = F.relu(x)
+        x = self.pool(x)  # 14 -> 7
+
+        x = torch.flatten(x, 1)
+        x = F.linear(x, p["fc.weight"], p["fc.bias"])
+        return x
+
+# -----------------------------
+# 3) MAML utilities
+# -----------------------------
+def inner_update(model: TinyConv, params: Dict[str, torch.Tensor],
+                 x_s, y_s, inner_lr: float, steps: int) -> Dict[str, torch.Tensor]:
+    """Perform 'steps' gradient updates on support set; return adapted fast weights dict."""
+    fast = {k: v.clone() for k, v in params.items()}
+    for _ in range(steps):
+        logits = model.forward_with(x_s, fast)
+        loss = F.cross_entropy(logits, y_s)
+        grads = torch.autograd.grad(loss, fast.values(), create_graph=True)
+        for (name, w), g in zip(fast.items(), grads):
+            fast[name] = w - inner_lr * g
+    return fast
+
+@torch.no_grad()
+def accuracy(model: TinyConv, params: Dict[str, torch.Tensor], x, y) -> float:
+    pred = model.forward_with(x, params).argmax(dim=1)
+    return (pred == y).float().mean().item()
+
+# -----------------------------
+# 4) Meta-training loop (MAML)
+# -----------------------------
+def meta_train(
+    N=3, K=5, Q=10,           # N-way, K-shot, Q query per class
+    inner_steps=1, inner_lr=0.4,
+    meta_lr=1e-3, meta_batches=2000,
+    tasks_per_meta_batch=4,
+    seed=0
+):
+    random.seed(seed); np.random.seed(seed); torch.manual_seed(seed)
+
+    model = TinyConv(n_classes=N)
+    opt = torch.optim.Adam(model.parameters(), lr=meta_lr)
+
+    for step in range(1, meta_batches + 1):
+        meta_loss = 0.0
+        opt.zero_grad()
+
+        for _ in range(tasks_per_meta_batch):
+            x_s, y_s, x_q, y_q = sample_task(N, K, Q)
+            x_s, y_s, x_q, y_q = x_s, y_s, x_q, y_q
+
+            # 1) inner adaptation on support
+            base_params = model.params_dict()
+            fast_params = inner_update(model, base_params, x_s, y_s, inner_lr, inner_steps)
+
+            # 2) meta-objective on query with *adapted* params
+            q_logits = model.forward_with(x_q, fast_params)
+            q_loss = F.cross_entropy(q_logits, y_q)
+            meta_loss += q_loss
+
+        meta_loss = meta_loss / tasks_per_meta_batch
+        meta_loss.backward()
+        opt.step()
+
+        if step % 100 == 0:
+            # quick episodic eval: sample a fresh task and adapt, then test
+            x_s, y_s, x_q, y_q = sample_task(N, K, Q)
+            base_params = model.params_dict()
+            fast_params = inner_update(model, base_params, x_s, y_s, inner_lr, inner_steps)
+            acc = accuracy(model, fast_params, x_q, y_q)
+            print(f"Step {step:04d} | meta-loss {meta_loss.item():.4f} | episodic acc {acc:.3f}")
+
+    return model
+
+# -----------------------------
+# 5) Run meta-training and test on novel tasks
+# -----------------------------
+if __name__ == "__main__":
+    # Meta-train on 3-way 5-shot tasks with one inner step.
+    model = meta_train(
+        N=3, K=5, Q=10,
+        inner_steps=1, inner_lr=0.4,
+        meta_lr=1e-3, meta_batches=800,  # keep small; increase for better results
+        tasks_per_meta_batch=4, seed=42
+    )
+
+    # Evaluate zero-shot vs. after 1–3 inner updates on unseen task
+    N, K, Q = 3, 5, 10
+    x_s, y_s, x_q, y_q = sample_task(N, K, Q)
+    base = model.params_dict()
+
+    # Zero inner adaptation (just to see baseline)
+    acc0 = accuracy(model, base, x_q, y_q)
+
+    # One inner step
+    fast1 = inner_update(model, base, x_s, y_s, inner_lr=0.4, steps=1)
+    acc1 = accuracy(model, fast1, x_q, y_q)
+
+    # Three inner steps
+    fast3 = inner_update(model, base, x_s, y_s, inner_lr=0.4, steps=3)
+    acc3 = accuracy(model, fast3, x_q, y_q)
+
+    print("\nGeneralization on a new task:")
+    print(f"  After 0 inner steps: acc = {acc0:.3f}")
+    print(f"  After 1 inner step : acc = {acc1:.3f}")
+    print(f"  After 3 inner steps: acc = {acc3:.3f}")
 
