@@ -262,7 +262,14 @@ Videos:
 Presentation:
 
 Class overview:
-
+- A deeper dive into fine-tuning and RAG
+- Reasoning in language models
+- Chain of thoughts (CoT)
+- Proximal Policy Optimization (PPO)
+- Meta-learning
+- Model-agnostic meta-learning (MAML)
+- Multi-task learning
+- Graph learning
 
 Readings:
 
