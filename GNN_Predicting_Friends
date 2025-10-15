@@ -1,4 +1,10 @@
-#
+# Notes
+# We will simulate a small social graph:
+# Nodes = people (e.g. Alice, Bob, Carol, …)
+# Edges = existing friendships
+# Model = 2-layer GCN → learns embeddings
+# Task = predict probability of a friendship between two users not yet connected
+
 # pip install torch networkx numpy
 import torch
 import torch.nn as nn
