@@ -5,6 +5,18 @@
 # Model = 2-layer GCN → learns embeddings
 # Task = predict probability of a friendship between two users not yet connected
 
+# How it works?
+# Each node (person) has an initial feature vector (identity or attributes)
+# The GCN layers aggregate information from their neighbors (friends)
+# The link predictor takes two node embeddings and estimates the probability that they should be connected
+# The model learns to give high scores for real friendships and low scores for random pairs
+
+# Possible extensions
+# Add node features like age, interests, or location.
+# Replace the link predictor with a dot product (p = σ(zᵢ · zⱼ)) for simplicity.
+# Use PyTorch Geometric for large or real graphs.
+# Evaluate with ROC-AUC or precision@k metrics.
+
 # pip install torch networkx numpy
 import torch
 import torch.nn as nn
