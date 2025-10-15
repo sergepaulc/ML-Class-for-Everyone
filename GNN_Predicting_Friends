@@ -1,1 +1,129 @@
+#
+# pip install torch networkx numpy
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import networkx as nx
+import numpy as np
+import random
+
+# --------------------------
+# 1. Build a toy social graph
+# --------------------------
+G = nx.Graph()
+G.add_nodes_from(["Alice", "Bob", "Carol", "David", "Emma", "Frank"])
+
+# Existing friendships (edges)
+G.add_edges_from([
+    ("Alice", "Bob"),
+    ("Alice", "Carol"),
+    ("Bob", "David"),
+    ("Carol", "Emma"),
+    ("David", "Frank")
+])
+
+nodes = list(G.nodes())
+node_to_idx = {n: i for i, n in enumerate(nodes)}
+n = len(nodes)
+
+# Adjacency matrix (binary friendship connections)
+A = np.zeros((n, n))
+for u, v in G.edges():
+    i, j = node_to_idx[u], node_to_idx[v]
+    A[i, j] = A[j, i] = 1
+
+# Add self-loops
+A += np.eye(n)
+# Normalize adjacency
+D_inv_sqrt = np.linalg.inv(np.sqrt(np.diag(A.sum(axis=1))))
+A_hat = D_inv_sqrt @ A @ D_inv_sqrt
+
+A_hat = torch.tensor(A_hat, dtype=torch.float32)
+
+# --------------------------
+# 2. Node feature matrix
+# --------------------------
+# For simplicity: each node starts with one-hot identity features
+X = torch.eye(n)
+
+# --------------------------
+# 3. Define a simple 2-layer GCN
+# --------------------------
+class GCN(nn.Module):
+    def __init__(self, in_dim, hidden_dim, out_dim):
+        super().__init__()
+        self.gcn1 = nn.Linear(in_dim, hidden_dim)
+        self.gcn2 = nn.Linear(hidden_dim, out_dim)
+
+    def forward(self, A_hat, X):
+        H = F.relu(self.gcn1(A_hat @ X))
+        Z = self.gcn2(A_hat @ H)
+        return Z  # node embeddings
+
+# --------------------------
+# 4. Link predictor
+# --------------------------
+class LinkPredictor(nn.Module):
+    def __init__(self, in_dim):
+        super().__init__()
+        self.fc = nn.Sequential(
+            nn.Linear(in_dim * 2, 32),
+            nn.ReLU(),
+            nn.Linear(32, 1)
+        )
+
+    def forward(self, z_i, z_j):
+        pair = torch.cat([z_i, z_j], dim=-1)
+        return torch.sigmoid(self.fc(pair))
+
+# --------------------------
+# 5. Training setup
+# --------------------------
+gcn = GCN(in_dim=n, hidden_dim=8, out_dim=8)
+predictor = LinkPredictor(in_dim=8)
+
+params = list(gcn.parameters()) + list(predictor.parameters())
+optimizer = torch.optim.Adam(params, lr=0.01)
+
+# Positive examples = existing edges
+positive_pairs = [(node_to_idx[u], node_to_idx[v]) for u, v in G.edges()]
+
+# Negative examples = random unconnected pairs
+all_pairs = [(i, j) for i in range(n) for j in range(i + 1, n)]
+negative_pairs = [p for p in all_pairs if p not in positive_pairs]
+negative_pairs = random.sample(negative_pairs, len(positive_pairs))
+
+# Training data
+train_pairs = positive_pairs + negative_pairs
+labels = torch.tensor([1]*len(positive_pairs) + [0]*len(negative_pairs), dtype=torch.float32)
+
+# --------------------------
+# 6. Training loop
+# --------------------------
+for epoch in range(300):
+    optimizer.zero_grad()
+    Z = gcn(A_hat, X)
+
+    preds = []
+    for i, j in train_pairs:
+        preds.append(predictor(Z[i], Z[j]))
+    preds = torch.cat(preds).squeeze()
+
+    loss = F.binary_cross_entropy(preds, labels)
+    loss.backward()
+    optimizer.step()
+
+    if (epoch + 1) % 50 == 0:
+        acc = ((preds > 0.5) == (labels > 0.5)).float().mean()
+        print(f"Epoch {epoch+1}: Loss = {loss.item():.4f}, Accuracy = {acc.item():.3f}")
+
+# --------------------------
+# 7. Predict new friendships
+# --------------------------
+with torch.no_grad():
+    Z = gcn(A_hat, X)
+    print("\nPredicted friendship probabilities:")
+    for i, j in negative_pairs:
+        p = predictor(Z[i], Z[j]).item()
+        print(f" {nodes[i]} ↔ {nodes[j]}: {p:.2f}")
 
