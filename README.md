@@ -288,6 +288,6 @@ Videos:
 - [Stanford CS224W: Machine Learning with Graphs Lecture 1.3](https://youtu.be/P-m1Qv6-8cI?si=HWXtOzCC9VonHmo2)
 
 Code samples:
-- 
+- [GNN_Predicting_Friends]( )
 
 
