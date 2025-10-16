@@ -288,7 +288,7 @@ Videos:
 - [Stanford CS224W: Machine Learning with Graphs Lecture 1.3](https://youtu.be/P-m1Qv6-8cI?si=HWXtOzCC9VonHmo2)
 
 Code samples:
-- [Meta_Learners_for_Image_Classification]( )
+- [Meta_Learners_for_Image_Classification](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Meta_Learners_for_Image_Classification)
 - [GNN_Predicting_Friends](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/GNN_Predicting_Friends)
 
 
