@@ -1,6 +1,9 @@
 # MAML for few-shot image classification on tiny synthetic shape images (≤ 5 images per class)
-It builds simple 28×28 grayscale images of shapes (circle/square/triangle/plus/X, etc.)
-Everything runs offline - MAML learn to adapt in 1–5 gradient steps.
+# It builds simple 28×28 grayscale images of shapes (circle/square/triangle/plus/X, etc.)
+# Everything runs offline - MAML learn to adapt in 1–5 gradient steps
+# N-way, K-shot tasks (e.g., 3-way 5-shot) with a small support set and query set per task
+# A tiny ConvNet written in a functional style so we can update fast weights during the inner loop
+# Full MAML loop: inner adaptation on support → meta-gradient on query → update meta-parameters
 
 # pip install torch numpy
 import math
