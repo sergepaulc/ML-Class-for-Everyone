@@ -2,7 +2,7 @@
 # Using PyTorch (no external GNN libraries for simplicity)
 # It creates a small social network graph, trains a GCN to learn node embeddings, and predicts which pairs of people are likely to become friends (i.e., link prediction)
 
-# Notes
+# Notes:
 # We will simulate a small social graph:
 # Nodes = people (e.g. Alice, Bob, Carol, …)
 # Edges = existing friendships
