@@ -1,6 +1,17 @@
-"""
-Reinforcement Learning (Q-learning) demo:
-Robot collects fruits from a kitchen table and drops them in a basket.
+# Reinforcement Learning (Q-learning): Robot collects fruits from a kitchen table and drops them in a basket.
+
+# Notes:
+# How to use it
+# Save as kitchen_q_learning.py and run with Python 3.9+.
+# Watch the average returns improve every ~500 episodes.
+# The final “greedy trajectory” printout shows the sequence of (state → action → next state) decisions that collects and drops fruits.
+
+# Additional Notes:
+# Tweaks you can try
+# More fruits: add to fruits=((...), (...), (...))—the state space grows by ×2 for each fruit (bitmask).
+# Reward shaping: increase drop_reward if the agent gets stuck; reduce penalties once it learns.
+# Grid size: bump H, W to make navigation harder.
+# Stochasticity: inject slip/noise in moves to model imperfect control.
 
 ====================  MARKOV DECISION PROCESS (MDP)  ====================
 
