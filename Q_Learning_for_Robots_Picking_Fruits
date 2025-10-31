@@ -1,1 +1,279 @@
+"""
+Reinforcement Learning (Q-learning) demo:
+Robot collects fruits from a kitchen table and drops them in a basket.
+
+====================  MARKOV DECISION PROCESS (MDP)  ====================
+
+States S:
+  A state is a tuple (x, y, fruit_mask, holding)
+    - (x, y): robot hand position on a 2D grid of size H x W
+    - fruit_mask: bitmask for remaining fruits on the table
+        * K fruits; bit i = 1 means fruit i is still on the table; 0 means picked up & delivered
+    - holding: 0 or 1 (robot is carrying exactly one fruit or not)
+  The basket has a fixed coordinate; fruit positions are fixed on the table.
+
+Actions A (discrete):
+    0: UP, 1: DOWN, 2: LEFT, 3: RIGHT, 4: PICK, 5: DROP
+
+Transition T(s, a, s'):
+    - Movement actions update (x, y) if inside bounds; otherwise stay in place.
+    - PICK: if holding == 0 and the robot is at a square containing a remaining fruit,
+            remove that fruit from fruit_mask and set holding = 1.
+    - DROP: if holding == 1 and at the basket square, deliver the fruit:
+            set holding = 0. (We assume capacity=1; must shuttle fruits one by one.)
+    - Episode terminates when fruit_mask == 0 (all fruits delivered).
+
+Rewards R(s, a, s'):
+    - Step penalty: -0.1 per action (encourages efficiency)
+    - Invalid action penalty (e.g., PICK with no fruit; DROP not at basket; move into wall): -0.2
+    - Successful PICK: +0.5 (gentle shaping)
+    - Successful DROP at basket: +1.0  (per delivered fruit)
+    - Task completion bonus when all fruits delivered: +10.0 (sparse completion reward)
+
+Goal:
+    Learn a policy that minimizes steps and reliably shuttles fruits to the basket.
+
+Policy:
+    ε-greedy over the learned Q-table.
+
+Q-learning update:
+    Q[s,a] ← Q[s,a] + α * (r + γ * max_a' Q[s',a'] − Q[s,a])
+
+========================================================================
+"""
+
+from dataclasses import dataclass
+import numpy as np
+import random
+from collections import defaultdict
+
+# -----------------------------
+# Environment
+# -----------------------------
+@dataclass
+class KitchenConfig:
+    H: int = 5                 # grid height
+    W: int = 6                 # grid width
+    basket: tuple = (0, 0)     # basket location (row, col)
+    fruits: tuple = ((2, 2), (2, 3))  # fruit squares on the "table"
+    start: tuple = (4, 5)      # robot start position
+    step_penalty: float = -0.1
+    invalid_penalty: float = -0.2
+    pick_reward: float = +0.5
+    drop_reward: float = +1.0
+    done_bonus: float = +10.0
+
+class KitchenFruitEnv:
+    """
+    A tiny grid kitchen:
+    - Agent moves on grid with actions: up, down, left, right, pick, drop.
+    - Collects fruits (one at a time) and drops them at a fixed basket location.
+    - Episode terminates when all fruits have been delivered.
+    """
+    UP, DOWN, LEFT, RIGHT, PICK, DROP = range(6)
+
+    def __init__(self, cfg: KitchenConfig):
+        self.cfg = cfg
+        self.K = len(cfg.fruits)
+        self.action_space_n = 6
+        # Precompute mapping between (x,y,mask,holding) and integer state id for Q-table indexing (optional)
+        self.state_size = cfg.H * cfg.W * (1 << self.K) * 2
+        self.reset()
+
+    def to_state_id(self, x, y, mask, holding):
+        """Map state tuple to an integer for compact Q-table indexing."""
+        idx = x
+        idx = idx * self.cfg.W + y
+        idx = idx * (1 << self.K) + mask
+        idx = idx * 2 + holding
+        return idx
+
+    def from_state_id(self, sid):
+        """(Not used below, but handy for debugging.)"""
+        holding = sid % 2; sid //= 2
+        mask = sid % (1 << self.K); sid //= (1 << self.K)
+        y = sid % self.cfg.W; sid //= self.cfg.W
+        x = sid
+        return x, y, mask, holding
+
+    def reset(self, seed=None):
+        if seed is not None:
+            random.seed(seed); np.random.seed(seed)
+        self.x, self.y = self.cfg.start
+        self.holding = 0
+        self.mask = (1 << self.K) - 1  # all fruits present initially
+        self.delivered = 0
+        return self._obs()
+
+    def _obs(self):
+        return self.to_state_id(self.x, self.y, self.mask, self.holding)
+
+    def _in_bounds(self, x, y):
+        return 0 <= x < self.cfg.H and 0 <= y < self.cfg.W
+
+    def step(self, action):
+        reward = self.cfg.step_penalty
+        done = False
+        prev = (self.x, self.y, self.mask, self.holding)
+
+        if action == self.UP:
+            nx, ny = self.x - 1, self.y
+            if self._in_bounds(nx, ny):
+                self.x, self.y = nx, ny
+            else:
+                reward += self.cfg.invalid_penalty
+
+        elif action == self.DOWN:
+            nx, ny = self.x + 1, self.y
+            if self._in_bounds(nx, ny):
+                self.x, self.y = nx, ny
+            else:
+                reward += self.cfg.invalid_penalty
+
+        elif action == self.LEFT:
+            nx, ny = self.x, self.y - 1
+            if self._in_bounds(nx, ny):
+                self.x, self.y = nx, ny
+            else:
+                reward += self.cfg.invalid_penalty
+
+        elif action == self.RIGHT:
+            nx, ny = self.x, self.y + 1
+            if self._in_bounds(nx, ny):
+                self.x, self.y = nx, ny
+            else:
+                reward += self.cfg.invalid_penalty
+
+        elif action == self.PICK:
+            # Only if not holding and a fruit remains at current square
+            if self.holding == 0:
+                picked = False
+                for i, (fx, fy) in enumerate(self.cfg.fruits):
+                    if ((self.mask >> i) & 1) == 1 and (fx, fy) == (self.x, self.y):
+                        self.mask &= ~(1 << i)  # clear bit i
+                        self.holding = 1
+                        reward += self.cfg.pick_reward
+                        picked = True
+                        break
+                if not picked:
+                    reward += self.cfg.invalid_penalty
+            else:
+                reward += self.cfg.invalid_penalty
+
+        elif action == self.DROP:
+            # Only if holding and at basket
+            if self.holding == 1 and (self.x, self.y) == self.cfg.basket:
+                self.holding = 0
+                self.delivered += 1
+                reward += self.cfg.drop_reward
+            else:
+                reward += self.cfg.invalid_penalty
+
+        else:
+            raise ValueError("Unknown action")
+
+        # Done when all fruits have been delivered (mask==0 and holding==0)
+        if self.mask == 0 and self.holding == 0:
+            done = True
+            reward += self.cfg.done_bonus
+
+        return self._obs(), reward, done, {"prev": prev, "action": action}
+
+# -----------------------------
+# Q-learning
+# -----------------------------
+def q_learning_train(
+    env: KitchenFruitEnv,
+    episodes=3000,
+    alpha=0.2,        # learning rate
+    gamma=0.98,       # discount
+    eps_start=1.0,    # epsilon-greedy start
+    eps_end=0.05,     # epsilon-greedy floor
+    eps_decay=0.995,  # multiplicative decay per episode
+    max_steps=300
+):
+    Q = np.zeros((env.state_size, env.action_space_n), dtype=np.float32)
+    eps = eps_start
+    rewards = []
+
+    for ep in range(episodes):
+        s = env.reset()
+        total_r = 0.0
+
+        for t in range(max_steps):
+            # ε-greedy action selection
+            if random.random() < eps:
+                a = random.randrange(env.action_space_n)
+            else:
+                a = int(np.argmax(Q[s]))
+
+            s2, r, done, _ = env.step(a)
+            total_r += r
+
+            # Q-learning update
+            Q[s, a] = Q[s, a] + alpha * (r + gamma * np.max(Q[s2]) - Q[s, a])
+
+            s = s2
+            if done:
+                break
+
+        rewards.append(total_r)
+        eps = max(eps_end, eps * eps_decay)
+
+        if (ep + 1) % 500 == 0:
+            avg = np.mean(rewards[-500:])
+            print(f"Episode {ep+1:4d} | ε={eps:.3f} | avg return (last 500) = {avg:.2f}")
+
+    return Q, rewards
+
+def run_greedy_episode(env: KitchenFruitEnv, Q, max_steps=200, render=True):
+    s = env.reset()
+    tot = 0.0
+    traj = []
+    for _ in range(max_steps):
+        a = int(np.argmax(Q[s]))
+        s2, r, done, info = env.step(a)
+        tot += r
+        traj.append((info["prev"], a, (env.x, env.y, env.mask, env.holding), r))
+        s = s2
+        if done:
+            break
+
+    if render:
+        action_names = ["UP", "DOWN", "LEFT", "RIGHT", "PICK", "DROP"]
+        print("\nGreedy trajectory (state, action, next_state, reward):")
+        for (x, y, mask, hold), a, (nx, ny, nmask, nhold), r in traj:
+            print(f"({x:>1},{y:>1}, mask={mask:0b}, hold={hold}) --{action_names[a]}--> "
+                  f"({nx:>1},{ny:>1}, mask={nmask:0b}, hold={nhold}) | r={r:+.2f}")
+        print(f"Total return: {tot:.2f}\n")
+    return tot, traj
+
+# -----------------------------
+# Run training
+# -----------------------------
+if __name__ == "__main__":
+    cfg = KitchenConfig(
+        H=5, W=6,
+        basket=(0, 0),
+        fruits=((2, 2), (2, 3),),     # two fruits on the table
+        start=(4, 5)
+    )
+    env = KitchenFruitEnv(cfg)
+    Q, rewards = q_learning_train(env, episodes=3000)
+
+    # Test the learned policy
+    run_greedy_episode(env, Q, render=True)
+
+    # (Optional) quick-and-dirty plot of training returns:
+    try:
+        import matplotlib.pyplot as plt
+        plt.figure(figsize=(7,4))
+        plt.plot(rewards)
+        plt.xlabel("Episode")
+        plt.ylabel("Return")
+        plt.title("Q-learning: Training Return per Episode")
+        plt.grid(True)
+        plt.show()
+    except Exception as e:
+        print("Plot skipped:", e)
 
