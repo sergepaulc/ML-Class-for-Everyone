@@ -1,3 +1,7 @@
+# Item–item collaborative filtering example using KNN (cosine similarity)
+# It recommends movies to a user by finding movies similar to the ones the user already liked/rated
+# Scoring candidates with a similarity-weighted average of the user’s ratings on neighbor movies
+
 import numpy as np
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
