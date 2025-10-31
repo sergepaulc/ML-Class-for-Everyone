@@ -1,3 +1,6 @@
+# Decision Tree on the classic Iris dataset, evaluates it, and visualizes the tree using scikit-learn
+
+
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier, plot_tree
