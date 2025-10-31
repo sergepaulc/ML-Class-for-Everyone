@@ -258,6 +258,9 @@ Videos:
 - [But how do AI images and videos actually work?](https://youtu.be/iv-5mZ_9CPY?si=XJFj60A7X1EenbH9)
 - [Stanford CS234 Reinforcement Learning I Introduction to Reinforcement Learning I 2024 I Lecture 1](https://youtu.be/WsvFL-LjA6U?si=udRpAb79toQFphNn)
 
+Code sample:
+- [Q_Learning_for_Robots_Picking_Fruits](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Q_Learning_for_Robots_Picking_Fruits)
+
 ## Class 6
 Presentation:
 
