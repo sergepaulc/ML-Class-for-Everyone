@@ -1,5 +1,9 @@
 # Decision Tree on the classic Iris dataset, evaluates it, and visualizes the tree using scikit-learn
 
+# Notes:
+# max_depth curbs overfitting; try None to see a fully grown tree
+# Switch criterion between "gini" and "entropy" to compare split metrics.
+# For a publication-quality graphic, you can also export with export_graphviz and render via Graphviz.
 
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
