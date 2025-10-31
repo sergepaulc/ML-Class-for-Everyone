@@ -8,7 +8,7 @@
 # Full MAML loop: inner adaptation on support → meta-gradient on query → update meta-parameters
 
 # Additional Notes:
-# How to use / tweak
+# How to use / tweak:
 # Change few-shot regime: set N (ways), K (shots), and Q in meta_train(...)
 # Inner loop steps: increase inner_steps (1–5) and tune inner_lr (e.g., 0.1–0.5)
 # Training length: increase meta_batches (e.g., 5–10k) for better accuracy
