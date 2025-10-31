@@ -7,6 +7,15 @@
 # A tiny ConvNet written in a functional style so you can update fast weights during the inner loop
 # Full MAML loop: inner adaptation on support → meta-gradient on query → update meta-parameters
 
+# Additional Notes:
+# How to use / tweak
+# Change few-shot regime: set N (ways), K (shots), and Q in meta_train(...)
+# Inner loop steps: increase inner_steps (1–5) and tune inner_lr (e.g., 0.1–0.5)
+# Training length: increase meta_batches (e.g., 5–10k) for better accuracy
+# Harder tasks: add more shapes or stronger augmentations
+# What you’ll see: as meta-training proceeds, the episodic accuracy on fresh tasks rises
+# And when evaluating, 1–3 inner updates give a strong few-shot boost, which is exactly what MAML is designed for
+
 # pip install torch numpy
 import math
 import random
