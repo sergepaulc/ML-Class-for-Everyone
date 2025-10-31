@@ -1,3 +1,8 @@
+# Support Vector Machine (SVM) to classify a simple two-class dataset using scikit-learn
+
+# Notes:
+# make_classification to generate toy data, train an SVM, evaluate it, and plot the decision boundary
+
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
