@@ -1,7 +1,7 @@
 # Reinforcement Learning (Q-learning): Robot collects fruits from a kitchen table and drops them in a basket.
 
 # Notes:
-# How to use it
+# How to use it?
 # Save as kitchen_q_learning.py and run with Python 3.9+.
 # Watch the average returns improve every ~500 episodes.
 # The final “greedy trajectory” printout shows the sequence of (state → action → next state) decisions that collects and drops fruits.
