@@ -1,3 +1,7 @@
+# A tiny neural net (via backprop) to predict whether a candidate will get an onsite interview from three inputs: 
+# Education (categorical), experience (years), and phone interview score
+# Using the PyTorch library
+
 # Notes:
 # Inputs: education (categorical → one-hot), experience (years → standardized), phone_score (0–1; pass/fail can be 0/1)
 # Loss: BCEWithLogitsLoss = binary cross-entropy with an internal sigmoid
