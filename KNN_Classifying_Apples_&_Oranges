@@ -1,3 +1,12 @@
+# KNN classifier (k=3) that classifies fruits (🍎 apples vs 🍊 oranges) based on two features: sweetness and crunchiness 
+# Use scikit-learn’s KNeighborsClassifier
+
+# Notes:
+# Dataset: Apples: sweeter & crunchier - Oranges: less sweet & less crunchy
+# Training: KNN classifier with k=3
+# Prediction: Classifies new fruits based on nearest neighbors
+# Visualization: Shows decision boundary + data points
+
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
