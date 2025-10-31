@@ -1,4 +1,5 @@
 # Logistic regression using scikit-learn to classify e-mail messages in Spam and Non-Spam
+
 # Notes:
 # TfidfVectorizer converts text (subject, body) into weighted numerical features
 # OneHotEncoder transforms categorical features (sender, headers)
