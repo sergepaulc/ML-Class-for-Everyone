@@ -7,7 +7,7 @@
 # Prediction formula (user–user CF)
 # Recommendation: rank unseen movies by predicted rating
 
-# Additional notes:
+# Additional Notes:
 # For real data: handle sparsity (bigger matrices), consider minimum co-rated items before trusting a similarity
 # And try Pearson correlation in addition to cosine
 # You can replace this tiny matrix with your real user–movie ratings and it will work the same
