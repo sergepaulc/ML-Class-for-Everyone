@@ -2,6 +2,10 @@
 
 # Notes:
 # make_classification to generate toy data, train an SVM, evaluate it, and plot the decision boundary
+# kernel="linear" gives a straight-line boundary
+# Try kernel="rbf" or kernel="poly" for nonlinear separations
+# C controls regularization (larger C = less regularization, tighter fit)
+# With real-world data (e.g., text, images), you would scale features first (e.g., StandardScaler)
 
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_classification
