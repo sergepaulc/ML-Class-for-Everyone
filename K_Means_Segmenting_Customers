@@ -4,6 +4,7 @@
 # The sample uses 4 clusters (within your 3–5 requirement); change n_clusters to 3, 4, or 5 as you like
 # Picking k (3–5): Try several values and compare silhouette scores to pick a reasonable number
 
+# Additional Notes:
 # Interpreting clusters:
 # High loyalty & low price sensitivity → “champions”
 # Low loyalty & high price sensitivity → “bargain hunters”
