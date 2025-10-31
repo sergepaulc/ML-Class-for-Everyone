@@ -2,6 +2,17 @@
 # It recommends movies to a user by finding movies similar to the ones the user already liked/rated
 # Scoring candidates with a similarity-weighted average of the user’s ratings on neighbor movies
 
+# Notes:
+# Index on items: we compute cosine similarity between movies using columns of the user–item matrix (after user mean-centering).
+# Scoring a candidate movie for user u: look up its K nearest neighbor movies, intersect with the movies u has rated (or “liked” ≥ threshold), and take a similarity-weighted average of u’s centered ratings on those neighbors. Add back u’s mean to get a predicted rating.
+# like_threshold lets you implement the “based on movies the user has already liked” requirement—only neighbor movies that the user rated ≥ threshold contribute.
+
+# Additional Notes:
+# Add a minimum co-rater count when forming item similarities to avoid spurious sims on very sparse overlaps.
+# Try Pearson correlation for similarity (works well with ratings).
+# For scale: precompute an item–item similarity matrix offline and use approximate nearest neighbors (FAISS/Annoy) for retrieval.
+# For cold-start users, fall back to content-based or popularity models until you have enough history.
+
 import numpy as np
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
