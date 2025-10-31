@@ -1,10 +1,15 @@
-# linear regression model using scikit-learn that predicts house prices in San Francisco with the given features:
+# Linear regression model using scikit-learn that predicts house prices in San Francisco with the given features:
 # Size (square footage, numeric)
 # Location (categorical, e.g., neighborhood)
 # Number of bedrooms (numeric)
 # Age of house (numeric)
 # Amenities (categorical, e.g., pool, garage, etc.)
 # Condition (categorical or ordinal: poor, fair, good, excellent)
+
+# Additional notes:
+# ColumnTransformer ensures numeric features are standardized (StandardScaler) and categorical ones are one-hot encoded (OneHotEncoder)
+# Pipeline keeps preprocessing and regression together, so you can easily train and predict without repeating transformations
+# The dataset here is tiny and just for illustration—you’d normally use a much larger dataset (e.g., from Zillow, Redfin, or public city records)
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
