@@ -1,5 +1,10 @@
 # The kernel trick with an RBF (Gaussian) kernel SVM on a nonlinear dataset (two concentric circles that are not linearly separable)
 
+# Notes:
+# Dataset: two concentric circles (cannot be separated by a straight line)
+# Linear SVM would fail → all points overlap in both classes
+# RBF kernel implicitly maps the data to a higher-dimensional space where the two circles are separable
+# The decision boundary becomes a nonlinear curve that separates the inner circle from the outer circle
 
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_circles
