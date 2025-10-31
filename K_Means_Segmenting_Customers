@@ -1,3 +1,14 @@
+# Clustering customers by brand loyalty (x-axis) and price sensitivity (y-axis) using K-means with scikit-learn library.
+
+# Notes:
+# The sample uses 4 clusters (within your 3–5 requirement); change n_clusters to 3, 4, or 5 as you like
+# Picking k (3–5): Try several values and compare silhouette scores to pick a reasonable number
+
+# Interpreting clusters:
+# High loyalty & low price sensitivity → “champions”
+# Low loyalty & high price sensitivity → “bargain hunters”
+# Middle groups → “potential loyalists”, etc...
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
