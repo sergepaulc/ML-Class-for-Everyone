@@ -1,3 +1,12 @@
+# Random Forest classifier to classify iris flowers into their three species
+
+# Notes:
+# Loads the Iris dataset (150 flowers, 4 features: sepal length, sepal width, petal length, petal width)
+# Splits into training/testing sets
+# Trains a Random Forest with 100 trees
+# Evaluates accuracy, confusion matrix, and classification report
+# Plots feature importances (petal length/width usually dominate)
+
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
