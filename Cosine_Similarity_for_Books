@@ -1,3 +1,12 @@
+# Content-based filtering with cosine similarity is a classic way to measure how similar books
+# based on their features (e.g., genre, keywords, author)
+
+# Notes:
+# Defines a small book–feature matrix (binary: whether a genre applies)
+# Uses cosine similarity to measure similarity between books
+# Builds a similarity matrix so you can compare any pair of books
+# Adds a simple recommendation function to get top-N most similar books
+
 import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
