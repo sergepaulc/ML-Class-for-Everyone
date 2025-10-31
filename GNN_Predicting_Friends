@@ -1,5 +1,5 @@
 # Graph Convolutional Network (GCN) for predicting potential friendships in a small social network
-# Using PyTorch (no external GNN libraries, for simplicity)
+# Using PyTorch (no external GNN libraries for simplicity)
 # It creates a small social network graph, trains a GCN to learn node embeddings, and predicts which pairs of people are likely to become friends (i.e., link prediction)
 
 # Notes
