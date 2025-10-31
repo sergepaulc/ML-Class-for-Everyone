@@ -1,3 +1,11 @@
+# KNN regression model (with K=3) that predicts house prices based only on house size using scikit-learn’s KNeighborsRegressor
+
+# Notes:
+# Creates a small training dataset (house_sizes, house_prices)
+# Fits a KNN regressor with k=3
+# Predicts prices for test house sizes (820, 1000, 1700 sq ft)
+# Plots the training data, predicted curve, and test predictions
+
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsRegressor
