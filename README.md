@@ -273,6 +273,7 @@ Class overview:
 - Model-agnostic meta-learning (MAML)
 - Multi-task learning
 - Graph learning
+- Agentic systems
 
 Readings:
 - [Wikipedia: Reasoning language model](https://en.wikipedia.org/wiki/Reasoning_language_model)
@@ -289,6 +290,7 @@ Videos:
 - [Stanford CS224W: Machine Learning with Graphs Lecture 1.1](https://youtu.be/JAB_plj2rbA?si=rzFWweov0WaRzQHX)
 - [Stanford CS224W: Machine Learning with Graphs Lecture 1.2](https://youtu.be/aBHC6xzx9YI?si=qf9P0a4uKhM0wrC7)
 - [Stanford CS224W: Machine Learning with Graphs Lecture 1.3](https://youtu.be/P-m1Qv6-8cI?si=HWXtOzCC9VonHmo2)
+- [How We Build Effective Agents: Barry Zhang, Anthropic](https://youtu.be/D7_ipDqhtwk?si=4CIavPdwNdmxzytY)
 
 Code samples:
 - [Meta_Learners_for_Image_Classification](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Meta_Learners_for_Image_Classification)
