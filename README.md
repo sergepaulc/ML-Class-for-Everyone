@@ -20,6 +20,8 @@ Please watch at least one of the following videos to start building your technic
 - [Humanoid Robots – Professor Pieter Abbeel from UC Berkeley - AI for Humanoid Robots @ NVIDIA GTC 2025](https://www.nvidia.com/en-us/on-demand/session/gtc25-s73182/) 
 - [OpenAI Achieved Gold-Medal Standard at the 2025 International Mathematical Olympiad](https://youtu.be/EEIPtofVe2Q?si=igiNENAdzZnvBgJ-)
 
+Pre-Class Homework 3: Mathematical Foundations of Machine Learning
+
 
 ## Class 1
 Presentation:
