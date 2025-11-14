@@ -24,7 +24,7 @@ Pre-Class Homework 3: Mathematical Foundations of Machine Learning
 
 
 ## Class 1
-Presentation:
+[ML University for Everyone - Class 1](https://asiliconvalleyinsider.com/wp-content/uploads/2025/11/ml_university_class_1_v1.0.pdf)
 
 Class overview:
 
@@ -64,7 +64,7 @@ Homework:
 - Propose a few use cases and applications that could be developed using an estimation (based on a regression), a binary classification (based on a logistic regression), and a segmentation (based on a K-means clustering).
 
 ## Class 2
-Presentation:
+[ML University for Everyone - Class 2](https://asiliconvalleyinsider.com/wp-content/uploads/2025/11/ml_university_class_2_v1.1.pdf)
 
 Class overview:
 - Learning more about models, features, and labels
@@ -108,7 +108,7 @@ Homework:
 Note: You can be as creative as you want in terms of the product plan that you will use to drive the development of those apps but at least describe the “what” and “why” of the apps, the data sources/features, the possible models, and any KPIs. If you are running out of time, just do something simple in a few sentences for each homework in ½ page. If you have time, do as much as you can 🙂
 
 ## Class 3
-Presentation:
+[ML University for Everyone – Class 3](https://asiliconvalleyinsider.com/wp-content/uploads/2025/11/ml_university_class_3_v1.0.pdf)
 
 Class overview:
 - Learning about the K-nearest neighbor algorithm
@@ -156,7 +156,7 @@ Answer the following questions. Note: please limit your answers to a few concise
 - Why deep learning models are somewhat considered as a “black box” model compared for instance to decision trees that are considered as a “white box” model?
 
 ## Class 4
-Presentation:
+[ML University for Everyone - Class 4](https://asiliconvalleyinsider.com/wp-content/uploads/2025/11/ml_university_class_4_v1.3.pdf)
 
 Class overview:
 - Deeper dive about deep learning
@@ -237,7 +237,7 @@ For this project, use as much as you can ChatGPT or any other language model (Ge
 Also, you can work on your own or team with a few classmates.
 
 ## Class 5
-Presentation:
+[ML University for Everyone - Class 5](https://asiliconvalleyinsider.com/wp-content/uploads/2025/11/ml_university_class_5_v1.0.pdf)
 
 Class overview:
 - A quick review of the algorithms for each type of learning
@@ -264,7 +264,7 @@ Code sample:
 - [Q_Learning_for_Robots_Picking_Fruits](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Q_Learning_for_Robots_Picking_Fruits)
 
 ## Class 6
-Presentation:
+[ML University for Everyone – Class 6](https://asiliconvalleyinsider.com/wp-content/uploads/2025/11/ml_university_class_6_v1.0.pdf)
 
 Class overview:
 - A deeper dive into fine-tuning and RAG
