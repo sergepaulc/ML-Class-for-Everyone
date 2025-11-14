@@ -1,7 +1,15 @@
 # ML Class for Everyone
 
 ## A Gentle Introduction to Machine Learning for Everyone
-The goal of this class is to learn the fundamentals of ML technologies. There are six classes. Class 7 is a final project where students present a machine learning application. Each class includes a presentation, readings, videos to watch, and homework. The most difficult concepts are presented and discussed in multiple classes in an incremental way. There is some easy homework to do from Class 1 to Class 3. Students are expected to work from Class 4 to Class 6 on their final projects.
+The goal of this class is to introduce the fundamental concepts and techniques behind machine learning. The course consists of six sessions, followed by a seventh session dedicated to final project presentations. In this final class, students present a machine learning application of their choice.
+
+Each session includes a presentation, curated readings, videos, code samples, and a set of homework exercises. The more challenging concepts are introduced gradually across multiple sessions to support incremental understanding. From Classes 1 to 3, the assignments are relatively simple, designed to build a foundation. From Class 4 onward, students begin focusing on their final projects.
+
+This third edition includes the latest on GenAI and both language and vision foundation models.
+
+It also include a review of the mathematical concepts underlying the algorithms.
+
+All course content is updated as of September 2025.
 
 ## Pre-Class Homework
 Pre-Class Homework 1: The AI/ML landscape
