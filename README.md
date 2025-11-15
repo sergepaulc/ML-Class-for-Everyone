@@ -306,4 +306,9 @@ Code samples:
 - [Meta_Learners_for_Image_Classification](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/Meta_Learners_for_Image_Classification)
 - [GNN_Predicting_Friends](https://github.com/sergepaulc/ML-Class-for-Everyone/blob/main/GNN_Predicting_Friends)
 
+## Class 7
+Final project presentation:
+
+Show time 🙂
+
 
