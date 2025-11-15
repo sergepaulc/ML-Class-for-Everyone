@@ -311,4 +311,7 @@ Final project presentation:
 
 Show time 🙂
 
+## Licensing 
+This project is licensed under the terms of the MIT license.
+
 
